@@ -7,17 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using GameItems;
+using UsefulControls;
 
 namespace MIC_Monopolia {
 	public partial class MainField : Form {
 		private const int SQUARE_SIDES_COUNT = 4;
 		private const int PERCENT_100 = 100;
 		private const int ERROR_INT = -1;
+		private const int LEFT_MOST_COLUMN = 0;
 		
-		private Cell[] playCells;
+		private Cell[] cells;
+		private Chip[] chips;		
+		private	ImprovedLabel[] namePlayersDisTextBox;
+		private CubesPanel cubesPanel;
 		
-		public MainField(int playCellsCount) {
-			playCells = new Cell[playCellsCount];
+		private Player[] players;
+		
+		private Color[] orderColor = new Color[] { Color.Red, 
+			Color.Blue, Color.Green, Color.Yellow, Color.Black, Color.Brown, Color.Coral, Color.Orange, 
+			Color.Purple, Color.Gray 
+		}; 
+		
+		public MainField(int playCellsCount, int playersCount) {
+			cells = new Cell[playCellsCount];
+			namePlayersDisTextBox = new ImprovedLabel[playersCount];
+			chips = new Chip[playersCount];
+			cubesPanel = new CubesPanel();
+			
+			players = new Player[playersCount];
 			
 			InitializeComponent();
 			this.Font = new Font("PF Beausans Pro Light", 12F);
@@ -37,36 +54,75 @@ namespace MIC_Monopolia {
 				spaceTableLayoutPanel.RowStyles.Insert(i, new RowStyle(SizeType.Percent, PERCENT_100 / spaceTableLayoutPanel.RowCount));
 			}
 			spaceTableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+
+			controlTableLayoutPanel.RowStyles.Insert(0, new RowStyle(SizeType.Percent, PERCENT_100));
+			controlTableLayoutPanel.RowStyles.Insert(1, new RowStyle(SizeType.Absolute, cubesPanel.Height));
 			
-			inputCells();			
+			statisticTableLayoutPanel.RowCount = chips.Length;
+			int chipSidePercent = PERCENT_100 / statisticTableLayoutPanel.RowCount;
+			for (int i = 0; i < statisticTableLayoutPanel.RowCount; i++) {
+				statisticTableLayoutPanel.RowStyles.Insert(i, new RowStyle(SizeType.Percent, chipSidePercent));
+			}
+			statisticTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Absolute, percents(statisticTableLayoutPanel.Height, chipSidePercent)));
+			for (int i = 1; i < statisticTableLayoutPanel.ColumnCount; i++) {
+				statisticTableLayoutPanel.ColumnStyles.Insert(i, new ColumnStyle(SizeType.AutoSize));
+			}
+
+			initializeNamePlayersDisTextBox();
+			initilizeCells();
+			initilizePlayers();
+		}
+	
+		private int percents(int value, int per) {
+			return (value * per) / PERCENT_100;
+		}
+	
+		private void initializeNamePlayersDisTextBox() {
+			for (int i = 0; i < namePlayersDisTextBox.Length; i++) {
+				namePlayersDisTextBox[i] = new ImprovedLabel() {
+					Text = "Введите название команды",
+					Dock = DockStyle.Fill
+				};
+				statisticTableLayoutPanel.Controls.Add(namePlayersDisTextBox[i], 1, i);
+			}
 		}
 	
 		private int calculateFieldSide() {
-			if ((playCells.Length % SQUARE_SIDES_COUNT) != 0) {
+			if ((cells.Length % SQUARE_SIDES_COUNT) != 0) {
 				return ERROR_INT;
 			}
-			return playCells.Length / SQUARE_SIDES_COUNT;
+			return cells.Length / SQUARE_SIDES_COUNT;
 		}
 		
 		/// <summary>
 		/// Input 4 queues of cells
 		/// </summary>
-		private void inputCells() {
-			for (int i = 0; i < playCells.Length; i++) {
-				playCells[i] = new Cell(i);
-				playCells[i].Click += new EventHandler(MainField_Click);
+		private void initilizeCells() {
+			for (int i = 0; i < cells.Length; i++) {
+				cells[i] = new Cell(i);
+				cells[i].Click += new EventHandler(MainField_Click);
 			}
 			for (int i = 0; i < calculateFieldSide(); i++) {
-				spaceTableLayoutPanel.Controls.Add(playCells[i], i, 0);
+				spaceTableLayoutPanel.Controls.Add(cells[i], i, 0);
 			}
 			for (int i = 1; i < calculateFieldSide(); i++) {
-				spaceTableLayoutPanel.Controls.Add(playCells[calculateFieldSide() + i], calculateFieldSide(), i);
+				spaceTableLayoutPanel.Controls.Add(cells[calculateFieldSide() + i], calculateFieldSide(), i);
 			}
 			for (int i = 2; i < calculateFieldSide() + 1; i++) {
-				spaceTableLayoutPanel.Controls.Add(playCells[(calculateFieldSide() * 2) + i], calculateFieldSide() - i, calculateFieldSide() - 1);
+				spaceTableLayoutPanel.Controls.Add(cells[(calculateFieldSide() * 2) + i], calculateFieldSide() - i, calculateFieldSide() - 1);
 			}
 			for (int i = 2; i < calculateFieldSide(); i++) {
-				spaceTableLayoutPanel.Controls.Add(playCells[(calculateFieldSide() * 3) + i], 0, calculateFieldSide() - i);
+				spaceTableLayoutPanel.Controls.Add(cells[(calculateFieldSide() * 3) + i], 0, calculateFieldSide() - i);
+			}
+		}
+
+		private void initilizePlayers() {
+			for (int i = 0; i < players.Length; i++) {
+				players[i] = new Player(namePlayersDisTextBox[i].Text);
+				chips[i] = new Chip(orderColor[i]);
+			}
+			for (int i = 0; i < chips.Length; i++) {
+				statisticTableLayoutPanel.Controls.Add(chips[i], 0, i);
 			}
 		}
 

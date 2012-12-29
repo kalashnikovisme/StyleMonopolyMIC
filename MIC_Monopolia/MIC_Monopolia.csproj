@@ -48,7 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ImprovedLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GameItems\Cell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GameItems\CubesPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MainField.cs">
@@ -63,6 +72,7 @@
     <Compile Include="MetroForm.designer.cs">
       <DependentUpon>MetroForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameItems\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainField.resx">
@@ -87,6 +97,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RealObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

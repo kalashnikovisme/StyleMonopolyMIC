@@ -24,7 +24,7 @@ namespace GameItems {
 		
 		public Cell(int cellIndex) {
 			Index = cellIndex;
-		
+			
 			this.Dock = DockStyle.Fill;
 			this.BackColor = Color.White;
 		}
