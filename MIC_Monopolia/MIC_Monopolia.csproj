@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ConstControls.cs" />
+    <Compile Include="Controls\AppButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Chip.cs">
       <SubType>Component</SubType>
     </Compile>

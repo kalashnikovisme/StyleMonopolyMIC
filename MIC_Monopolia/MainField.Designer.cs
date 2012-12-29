@@ -44,7 +44,7 @@
 			this.fieldTableLayoutPanel.RowCount = 1;
 			this.fieldTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.fieldTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.fieldTableLayoutPanel.Size = new System.Drawing.Size(689, 418);
+			this.fieldTableLayoutPanel.Size = new System.Drawing.Size(799, 436);
 			this.fieldTableLayoutPanel.TabIndex = 0;
 			// 
 			// spaceTableLayoutPanel
@@ -74,7 +74,7 @@
 			this.spaceTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.spaceTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.spaceTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.spaceTableLayoutPanel.Size = new System.Drawing.Size(501, 412);
+			this.spaceTableLayoutPanel.Size = new System.Drawing.Size(581, 430);
 			this.spaceTableLayoutPanel.TabIndex = 0;
 			// 
 			// controlTableLayoutPanel
@@ -83,12 +83,13 @@
 			this.controlTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.87952F));
 			this.controlTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.12048F));
 			this.controlTableLayoutPanel.Controls.Add(this.statisticTableLayoutPanel, 0, 0);
-			this.controlTableLayoutPanel.Location = new System.Drawing.Point(510, 3);
+			this.controlTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.controlTableLayoutPanel.Location = new System.Drawing.Point(590, 3);
 			this.controlTableLayoutPanel.Name = "controlTableLayoutPanel";
 			this.controlTableLayoutPanel.RowCount = 2;
 			this.controlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.79012F));
 			this.controlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.20988F));
-			this.controlTableLayoutPanel.Size = new System.Drawing.Size(166, 405);
+			this.controlTableLayoutPanel.Size = new System.Drawing.Size(206, 430);
 			this.controlTableLayoutPanel.TabIndex = 1;
 			// 
 			// statisticTableLayoutPanel
@@ -102,14 +103,14 @@
 			this.statisticTableLayoutPanel.RowCount = 2;
 			this.statisticTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.statisticTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.statisticTableLayoutPanel.Size = new System.Drawing.Size(160, 304);
+			this.statisticTableLayoutPanel.Size = new System.Drawing.Size(200, 324);
 			this.statisticTableLayoutPanel.TabIndex = 0;
 			// 
 			// MainField
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(689, 418);
+			this.ClientSize = new System.Drawing.Size(799, 436);
 			this.Controls.Add(this.fieldTableLayoutPanel);
 			this.Name = "MainField";
 			this.Text = "MainField";

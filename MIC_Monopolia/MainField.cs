@@ -43,7 +43,8 @@ namespace MIC_Monopolia {
 		}
 
 		private void createField() {
-			fieldTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Percent, 80));
+			fieldTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Percent, 60));
+			fieldTableLayoutPanel.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 40));
 			fieldTableLayoutPanel.RowCount = 1;
 			spaceTableLayoutPanel.ColumnCount = calculateFieldSide();
 			spaceTableLayoutPanel.RowCount = calculateFieldSide();
@@ -67,6 +68,8 @@ namespace MIC_Monopolia {
 			for (int i = 1; i < statisticTableLayoutPanel.ColumnCount; i++) {
 				statisticTableLayoutPanel.ColumnStyles.Insert(i, new ColumnStyle(SizeType.AutoSize));
 			}
+
+			controlTableLayoutPanel.Controls.Add(cubesPanel, 0, 1);
 
 			initializeNamePlayersDisTextBox();
 			initilizeCells();
