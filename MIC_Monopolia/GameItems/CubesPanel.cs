@@ -10,6 +10,8 @@ namespace GameItems {
 	public class CubesPanel : TableLayoutPanel {
 		private PictureBox[] cubes = new PictureBox[2];
 		
+		private int[] pair = new int[2];
+		
 		public CubesPanel() {
 			this.Dock = DockStyle.Fill;
 			this.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Percent, 30));
@@ -31,8 +33,18 @@ namespace GameItems {
 				Text = "Бросить кубики",
 				Font = new Font("PF Beausans Pro Light", 15F)
 			};
+			button.Click += new EventHandler(button_Click);
 			this.Controls.Add(button, 1, 0);
 			this.AutoSize = true;
+		}
+
+		private void button_Click(object sender, EventArgs e) {
+			Random r = new Random();
+			for (int i = 0; i < 2; i++) {
+				int rand = r.Next(1, 6);
+				cubes[i].BackgroundImage = Image.FromFile(@"" + rand.ToString() + ".jpg");
+				pair[i] = rand;
+			}
 		}
 	}
 }
