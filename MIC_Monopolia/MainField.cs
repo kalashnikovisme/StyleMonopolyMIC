@@ -56,8 +56,8 @@ namespace MIC_Monopolia {
 			}
 			spaceTableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
 
-			controlTableLayoutPanel.RowStyles.Insert(0, new RowStyle(SizeType.Percent, PERCENT_100));
-			controlTableLayoutPanel.RowStyles.Insert(1, new RowStyle(SizeType.Absolute, cubesPanel.Height));
+			controlTableLayoutPanel.RowStyles.Insert(0, new RowStyle(SizeType.Percent, 70));
+			controlTableLayoutPanel.RowStyles.Insert(1, new RowStyle(SizeType.Absolute, 150));
 			
 			statisticTableLayoutPanel.RowCount = chips.Length;
 			int chipSidePercent = PERCENT_100 / statisticTableLayoutPanel.RowCount;

@@ -12,25 +12,26 @@ namespace GameItems {
 		
 		public CubesPanel() {
 			this.Dock = DockStyle.Fill;
-			this.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Percent, 50));
-			this.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 50));
+			this.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Percent, 30));
+			this.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 40));
+			this.ColumnStyles.Insert(2, new ColumnStyle(SizeType.Percent, 30));
 			for (int i = 0; i < cubes.Length; i++) {
 				cubes[i] = new PictureBox() {
-					Image = Image.FromFile(@"1.jpg"),
+					BackgroundImage = Image.FromFile(@"1.jpg"),
 					Dock = DockStyle.Fill,
 					BackgroundImageLayout = ImageLayout.Zoom
 				};
 			}
-			this.RowCount = 2;
-			this.ColumnCount = 2;
-			for (int i = 0; i < cubes.Length; i++) {
-				this.Controls.Add(cubes[i]);
-			}
+			this.RowCount = 1;
+			this.ColumnCount = 3;
+			this.Controls.Add(cubes[0], 0, 0);
+			this.Controls.Add(cubes[1], 2, 0);
+			
 			AppButton button = new AppButton() {
-				Text = "Бросить кубики"
+				Text = "Бросить кубики",
+				Font = new Font("PF Beausans Pro Light", 15F)
 			};
-			this.Controls.Add(button);
-			this.SetColumnSpan(button, 2);
+			this.Controls.Add(button, 1, 0);
 			this.AutoSize = true;
 		}
 	}
