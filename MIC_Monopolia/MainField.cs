@@ -78,21 +78,6 @@ namespace MIC_Monopolia {
 			initilizeChips();
 		}
 	
-		/// <summary>
-		/// Chips count is always 10. It need to save size of chip. All other chips are invisible.
-		/// </summary>
-		private void initilizeChips() {
-			for (int i = 0; i < CHIPS_COUNT; i++) {
-				chips[i] = new Chip(orderColor[i]);
-			}
-			for (int i = players.Length - 1; i < CHIPS_COUNT; i++) {
-				chips[i].Visible = false;
-			}
-			for (int i = 0; i < chips.Length; i++) {
-				statisticTableLayoutPanel.Controls.Add(chips[i], 0, i);
-			}
-		}
-	
 		private int percents(int value, int per) {
 			return (value * per) / PERCENT_100;
 		}
@@ -101,9 +86,13 @@ namespace MIC_Monopolia {
 			for (int i = 0; i < namePlayersDisTextBox.Length; i++) {
 				namePlayersDisTextBox[i] = new ImprovedLabel() {
 					Text = "Введите название команды",
-					Dock = DockStyle.Fill
+					Dock = DockStyle.Fill,
+					Control = ImprovedLabel.OBJ.TextBox
 				};
-				statisticTableLayoutPanel.Controls.Add(namePlayersDisTextBox[i], 1, i);
+			}
+			for (int i = 0; i < namePlayersDisTextBox.Length; i++) {
+				statisticTableLayoutPanel.Controls.Add(namePlayersDisTextBox[i].Label, 1, i);
+				statisticTableLayoutPanel.Controls.Add(namePlayersDisTextBox[i].TextBox, 1, i);
 			}
 		}
 	
@@ -139,6 +128,21 @@ namespace MIC_Monopolia {
 		private void initilizePlayers() {
 			for (int i = 0; i < players.Length; i++) {
 				players[i] = new Player(namePlayersDisTextBox[i].Text);
+			}
+		}
+
+		/// <summary>
+		/// Chips count is always 10. It need to save size of chip. All other chips are invisible.
+		/// </summary>
+		private void initilizeChips() {
+			for (int i = 0; i < CHIPS_COUNT; i++) {
+				chips[i] = new Chip(orderColor[i]);
+			}
+			for (int i = players.Length - 1; i < CHIPS_COUNT; i++) {
+				chips[i].Visible = false;
+			}
+			for (int i = 0; i < chips.Length; i++) {
+				statisticTableLayoutPanel.Controls.Add(chips[i], 0, i);
 			}
 		}
 

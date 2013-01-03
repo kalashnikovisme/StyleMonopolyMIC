@@ -12,12 +12,12 @@ namespace UsefulControls {
 	/// </summary>
 	public class ImprovedLabel : Control {
 		public System.Windows.Forms.Label Label;
-		public System.Windows.Forms.TextBox Textbox;
+		public System.Windows.Forms.TextBox TextBox;
 
 		/// <summary>
-		/// Added 09/08/2012
+		/// Changed 04/01/2012
 		/// </summary>
-		public enum OBJ { Label, Textbox };
+		public enum OBJ { Label, TextBox };
 		private OBJ control = OBJ.Label;
 		public OBJ Control {
 			get {
@@ -26,38 +26,38 @@ namespace UsefulControls {
 			set {
 				control = value;
 				if (control == OBJ.Label) {
-					ToLabel();
+					ToLabel();					
 				}
-				if (control == OBJ.Textbox) {
-					ToTextbox();
+				if (control == OBJ.TextBox) {
+					ToTextBox();
 				}
 			}
 		}
 
 		public ImprovedLabel() {
 			Label = new System.Windows.Forms.Label();
-			Textbox = new System.Windows.Forms.TextBox();
+			TextBox = new System.Windows.Forms.TextBox();
 
 			Label.AutoEllipsis = true;
 			Label.AutoSize = true;
 			Label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			Label.MouseClick += new System.Windows.Forms.MouseEventHandler(lab_MouseClick);
 			// 
-			// Textbox
+			// TextBox
 			// 
-			Textbox.Visible = false;
-			Textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(box_KeyPress);
+			TextBox.Visible = false;
+			TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(box_KeyPress);
 
 			Label.SizeChanged += new EventHandler(lab_SizeChanged);
 		}
 
 		void lab_SizeChanged(object sender, EventArgs e) {
-			Textbox.Size = Label.Size;
+			TextBox.Size = Label.Size;
 		}
 
 		public ImprovedLabel(int x, int y) {
 			Label = new System.Windows.Forms.Label();
-			Textbox = new System.Windows.Forms.TextBox();
+			TextBox = new System.Windows.Forms.TextBox();
 			// 
 			// Label
 			// 
@@ -73,43 +73,43 @@ namespace UsefulControls {
 			Label.Text = "default text";
 			Label.MouseClick += new System.Windows.Forms.MouseEventHandler(lab_MouseClick);
 			// 
-			// Textbox
+			// TextBox
 			// 
-			Textbox.Location = new System.Drawing.Point(x, y);
-			Textbox.Name = "NameTextBox";
-			Textbox.Size = new System.Drawing.Size(118, 20);
-			Textbox.TabIndex = 1;
-			Textbox.Text = "default text";
-			Textbox.Visible = false;
-			Textbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(box_KeyPress);
+			TextBox.Location = new System.Drawing.Point(x, y);
+			TextBox.Name = "NameTextBox";
+			TextBox.Size = new System.Drawing.Size(118, 20);
+			TextBox.TabIndex = 1;
+			TextBox.Text = "default text";
+			TextBox.Visible = false;
+			TextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(box_KeyPress);
 		}
 
 		/// <summary>
-		/// Changed 09/08/2012
+		/// Changed 04/01/2013
 		/// </summary>
-		private void ToLabel() {
+		private void ToTextBox() {
 			Label.Visible = false;
-			Textbox.Visible = true;
+			TextBox.Visible = true;
 			Label.Enabled = false;
-			Textbox.Enabled = true;
-			Textbox.Focus();
+			TextBox.Enabled = true;
+			TextBox.Focus();
 		}
 
 		/// <summary>
 		/// Changed 09/08/2012
 		/// </summary>
 		private void lab_MouseClick(object sender, MouseEventArgs e) {
-			ToLabel();
+			ToTextBox();
 		}
 
 		/// <summary>
-		/// Changed 09/08/2012
+		/// Changed 04/01/2013
 		/// </summary>
-		private void ToTextbox() {
-			Label.Text = Textbox.Text;
-			Textbox.Visible = false;
+		private void ToLabel() {
+			Label.Text = TextBox.Text;
+			TextBox.Visible = false;
 			Label.Visible = true;
-			Textbox.Enabled = false;
+			TextBox.Enabled = false;
 			Label.Enabled = true;
 		}
 
@@ -118,7 +118,7 @@ namespace UsefulControls {
 		/// </summary>
 		private void box_KeyPress(object sender, KeyPressEventArgs e) {
 			if (e.KeyChar == '\r') {
-				ToTextbox();
+				ToLabel();
 			}
 		}
 
@@ -137,7 +137,7 @@ namespace UsefulControls {
 			set {
 				enabledValue = value;
 				Label.Enabled = value;
-				Textbox.Enabled = value;
+				TextBox.Enabled = value;
 			}
 		}
 
@@ -156,7 +156,7 @@ namespace UsefulControls {
 			set {
 				locationValue = value;
 				Label.Location = value;
-				Textbox.Location = value;
+				TextBox.Location = value;
 			}
 		}
 
@@ -175,7 +175,7 @@ namespace UsefulControls {
 			set {
 				sizeValue = value;
 				Label.Size = value;
-				Textbox.Size = value;
+				TextBox.Size = value;
 			}
 		}
 
@@ -188,7 +188,7 @@ namespace UsefulControls {
 			set {
 				textValue = value;
 				Label.Text = value;
-				Textbox.Text = value;
+				TextBox.Text = value;
 			}
 		}
 
@@ -201,7 +201,7 @@ namespace UsefulControls {
 			set {
 				fontValue = value;
 				Label.Font = value;
-				Textbox.Font = value;
+				TextBox.Font = value;
 			}
 		}
 
@@ -223,7 +223,7 @@ namespace UsefulControls {
 			}
 			set {
 				Label.Visible = value;
-				Textbox.Visible = value;
+				TextBox.Visible = value;
 			}
 		}
 
@@ -245,7 +245,7 @@ namespace UsefulControls {
 			}
 			set {
 				Label.MaximumSize = value;
-				Textbox.MaximumSize = value;
+				TextBox.MaximumSize = value;
 			}
 		}
 
@@ -266,10 +266,10 @@ namespace UsefulControls {
 		/// </summary>
 		public bool Multiline {
 			get {
-				return Textbox.Multiline;
+				return TextBox.Multiline;
 			}
 			set {
-				Textbox.Multiline = value;
+				TextBox.Multiline = value;
 			}
 		}
 
@@ -278,7 +278,7 @@ namespace UsefulControls {
 		/// </summary>
 		/// <param name="newEvent"></param>
 		public void SaveText(EventHandler newEvent) {
-			Textbox.TextChanged += newEvent;
+			TextBox.TextChanged += newEvent;
 		}
 
 		/// <summary>
@@ -290,7 +290,7 @@ namespace UsefulControls {
 			}
 			set {
 				Label.Dock = value;
-				Textbox.Dock = value;
+				TextBox.Dock = value;
 			}
 		}
 	}
