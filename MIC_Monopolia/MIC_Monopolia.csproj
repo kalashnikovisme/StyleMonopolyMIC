@@ -56,7 +56,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ImprovedLabel.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GameItems\Cell.cs">
       <SubType>Component</SubType>
@@ -77,6 +76,9 @@
       <DependentUpon>MetroForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GameItems\Player.cs" />
+    <Compile Include="Controls\OpacityLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainField.resx">

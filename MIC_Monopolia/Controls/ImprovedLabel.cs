@@ -8,9 +8,9 @@ using System.Drawing;
 namespace UsefulControls {
 	/// <summary>
 	/// Автор: Антон Белов (с) 2012
-	/// Редактировал: Павел Калашников. Последняя редакция 30.12.2012
+	/// Редактировал: Павел Калашников. Последняя редакция 04.01.2013
 	/// </summary>
-	public class ImprovedLabel : Control {
+	public class ImprovedLabel {
 		public System.Windows.Forms.Label Label;
 		public System.Windows.Forms.TextBox TextBox;
 
@@ -291,6 +291,19 @@ namespace UsefulControls {
 			set {
 				Label.Dock = value;
 				TextBox.Dock = value;
+			}
+		}
+		
+		/// <summary>
+		/// Added 04/01/2013
+		/// </summary>
+		public Padding Margin {
+			get {
+				return Label.Margin;
+			}
+			set {
+				Label.Margin = value;
+				TextBox.Margin = value;
 			}
 		}
 	}
