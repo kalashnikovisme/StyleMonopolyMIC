@@ -26,6 +26,8 @@ namespace MIC_Monopolia {
 		private Dice[] dices;
 
 		private Player[] players;
+		private Game game;
+		private bool isGame = false;
 
 		private Color[] orderColor = new Color[] { Color.Red, 
 			Color.Blue, Color.Green, Color.Yellow, Color.Black, Color.Brown, Color.Coral, Color.Orange, 
@@ -104,22 +106,23 @@ namespace MIC_Monopolia {
 			cubesPanel.Controls.Add(dices[0], 0, 0);
 			cubesPanel.Controls.Add(dices[1], 2, 0);
 
-			AppButton button = new AppButton() {
+			AppButton rollDicesButton = new AppButton() {
 				Text = "Бросить кубики",
 				Font = new Font("PF Beausans Pro Light", 15F)
 			};
-			button.Click += new EventHandler(button_Click);
-			cubesPanel.Controls.Add(button, 1, 0);
+			rollDicesButton.Click += new EventHandler(rollDicesButton_Click);
+			cubesPanel.Controls.Add(rollDicesButton, 1, 0);
 			cubesPanel.AutoSize = true;
 		}
 
-		private void button_Click(object sender, EventArgs e) {
+		private void rollDicesButton_Click(object sender, EventArgs e) {
 			Random r = new Random();
 			for (int i = 0; i < 2; i++) {
 				int rand = r.Next(1, 6);
 				dices[i].BackgroundImage = Image.FromFile(@"" + rand.ToString() + ".jpg");
 				dices[i].Number = rand;
 			}
+			play();
 		}
 
 		private void initializePointPlayersLabel() {
@@ -220,13 +223,31 @@ namespace MIC_Monopolia {
 		private bool beginPlayCondition() {
 			foreach (ImprovedLabel m in namePlayersDisTextBox) {
 				if (m.Control == ImprovedLabel.OBJ.TextBox) {
+					MessageBox.Show("Не все названия команд заполнены!");
 					return false;
 				}
 			}
 			return true;
 		}
-		
-		
+
+		private int sumPointsOfDices() {
+			int sum = 0;
+			foreach (Dice d in dices) {
+				sum += d.Number;
+			}
+			return sum;
+		}
+
+		private void play() {
+			if (beginPlayCondition() == false) {
+				return;
+			}
+			if (isGame == false) {
+				game = new Game(players);
+				isGame = true;
+			}
+			game.NextMove(sumPointsOfDices());
+		}
 		
 		#endregion
 	}

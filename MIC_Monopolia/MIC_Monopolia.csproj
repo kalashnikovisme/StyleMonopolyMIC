@@ -63,6 +63,7 @@
     <Compile Include="GameItems\Dice.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GameItems\Game.cs" />
     <Compile Include="MainField.cs">
       <SubType>Form</SubType>
     </Compile>
