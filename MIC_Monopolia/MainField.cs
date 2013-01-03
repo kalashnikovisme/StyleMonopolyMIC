@@ -15,6 +15,7 @@ namespace MIC_Monopolia {
 		private const int PERCENT_100 = 100;
 		private const int ERROR_INT = -1;
 		private const int LEFT_MOST_COLUMN = 0;
+		private const int CHIPS_COUNT = 10;
 		
 		private Cell[] cells;
 		private Chip[] chips;		
@@ -31,7 +32,7 @@ namespace MIC_Monopolia {
 		public MainField(int playCellsCount, int playersCount) {
 			cells = new Cell[playCellsCount];
 			namePlayersDisTextBox = new ImprovedLabel[playersCount];
-			chips = new Chip[playersCount];
+			chips = new Chip[CHIPS_COUNT];
 			cubesPanel = new CubesPanel();
 			
 			players = new Player[playersCount];
@@ -74,6 +75,22 @@ namespace MIC_Monopolia {
 			initializeNamePlayersDisTextBox();
 			initilizeCells();
 			initilizePlayers();
+			initilizeChips();
+		}
+	
+		/// <summary>
+		/// Chips count is always 10. It need to save size of chip. All other chips are invisible.
+		/// </summary>
+		private void initilizeChips() {
+			for (int i = 0; i < CHIPS_COUNT; i++) {
+				chips[i] = new Chip(orderColor[i]);
+			}
+			for (int i = players.Length - 1; i < CHIPS_COUNT; i++) {
+				chips[i].Visible = false;
+			}
+			for (int i = 0; i < chips.Length; i++) {
+				statisticTableLayoutPanel.Controls.Add(chips[i], 0, i);
+			}
 		}
 	
 		private int percents(int value, int per) {
@@ -122,10 +139,6 @@ namespace MIC_Monopolia {
 		private void initilizePlayers() {
 			for (int i = 0; i < players.Length; i++) {
 				players[i] = new Player(namePlayersDisTextBox[i].Text);
-				chips[i] = new Chip(orderColor[i]);
-			}
-			for (int i = 0; i < chips.Length; i++) {
-				statisticTableLayoutPanel.Controls.Add(chips[i], 0, i);
 			}
 		}
 
