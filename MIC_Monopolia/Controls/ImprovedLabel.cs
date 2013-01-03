@@ -99,7 +99,7 @@ namespace UsefulControls {
 		/// Changed 09/08/2012
 		/// </summary>
 		private void lab_MouseClick(object sender, MouseEventArgs e) {
-			ToTextBox();
+			this.Control = OBJ.TextBox;
 		}
 
 		/// <summary>
@@ -118,7 +118,7 @@ namespace UsefulControls {
 		/// </summary>
 		private void box_KeyPress(object sender, KeyPressEventArgs e) {
 			if (e.KeyChar == '\r') {
-				ToLabel();
+				this.Control = OBJ.Label;
 			}
 		}
 

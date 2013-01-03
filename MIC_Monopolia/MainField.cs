@@ -17,33 +17,35 @@ namespace MIC_Monopolia {
 		private const int LEFT_MOST_COLUMN = 0;
 		private const int CHIPS_COUNT = 10;
 		private const int POINTS_COLUMN_INDEX = 2;
-		
+
 		private Cell[] cells;
-		private Chip[] chips;		
-		private	ImprovedLabel[] namePlayersDisTextBox;
+		private Chip[] chips;
+		private ImprovedLabel[] namePlayersDisTextBox;
 		private OpacityLabel[] pointsPlayersLabel;
-		private CubesPanel cubesPanel;
-		
+		private TableLayoutPanel cubesPanel;
+		private Dice[] dices;
+
 		private Player[] players;
-		
+
 		private Color[] orderColor = new Color[] { Color.Red, 
 			Color.Blue, Color.Green, Color.Yellow, Color.Black, Color.Brown, Color.Coral, Color.Orange, 
 			Color.Purple, Color.Gray 
-		}; 
-		
+		};
+
+		#region Create Field
+
 		public MainField(int playCellsCount, int playersCount) {
 			cells = new Cell[playCellsCount];
 			namePlayersDisTextBox = new ImprovedLabel[playersCount];
 			pointsPlayersLabel = new OpacityLabel[playersCount];
 			chips = new Chip[CHIPS_COUNT];
-			cubesPanel = new CubesPanel();
-			
-			
+			cubesPanel = new TableLayoutPanel();
+
 			players = new Player[playersCount];
-			
+
 			InitializeComponent();
 			this.Font = new Font("PF Beausans Pro Light", 12F);
-			
+
 			createField();
 		}
 
@@ -63,7 +65,7 @@ namespace MIC_Monopolia {
 
 			controlTableLayoutPanel.RowStyles.Insert(0, new RowStyle(SizeType.Percent, 70));
 			controlTableLayoutPanel.RowStyles.Insert(1, new RowStyle(SizeType.Absolute, 150));
-			
+
 			statisticTableLayoutPanel.RowCount = chips.Length;
 			int chipSidePercent = PERCENT_100 / statisticTableLayoutPanel.RowCount;
 			for (int i = 0; i < statisticTableLayoutPanel.RowCount; i++) {
@@ -75,6 +77,7 @@ namespace MIC_Monopolia {
 
 			controlTableLayoutPanel.Controls.Add(cubesPanel, 0, 1);
 
+			createDicesPanel();
 			initializeNamePlayersDisTextBox();
 			initializePointPlayersLabel();
 			initilizeCells();
@@ -82,12 +85,49 @@ namespace MIC_Monopolia {
 			initilizeChips();
 		}
 
+		private void createDicesPanel() {
+			dices = new Dice[2];
+			int[] pair = new int[2];
+			cubesPanel.Dock = DockStyle.Fill;
+			cubesPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Percent, 30));
+			cubesPanel.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 40));
+			cubesPanel.ColumnStyles.Insert(2, new ColumnStyle(SizeType.Percent, 30));
+			for (int i = 0; i < dices.Length; i++) {
+				dices[i] = new Dice() {
+					BackgroundImage = Image.FromFile(@"1.jpg"),
+					Dock = DockStyle.Fill,
+					BackgroundImageLayout = ImageLayout.Zoom
+				};
+			}
+			cubesPanel.RowCount = 1;
+			cubesPanel.ColumnCount = 3;
+			cubesPanel.Controls.Add(dices[0], 0, 0);
+			cubesPanel.Controls.Add(dices[1], 2, 0);
+
+			AppButton button = new AppButton() {
+				Text = "Бросить кубики",
+				Font = new Font("PF Beausans Pro Light", 15F)
+			};
+			button.Click += new EventHandler(button_Click);
+			cubesPanel.Controls.Add(button, 1, 0);
+			cubesPanel.AutoSize = true;
+		}
+
+		private void button_Click(object sender, EventArgs e) {
+			Random r = new Random();
+			for (int i = 0; i < 2; i++) {
+				int rand = r.Next(1, 6);
+				dices[i].BackgroundImage = Image.FromFile(@"" + rand.ToString() + ".jpg");
+				dices[i].Number = rand;
+			}
+		}
+
 		private void initializePointPlayersLabel() {
 			for (int i = 0; i < pointsPlayersLabel.Length; i++) {
 				pointsPlayersLabel[i] = new OpacityLabel() {
 					Dock = DockStyle.Fill,
 					TextAlign = ContentAlignment.MiddleCenter,
-					Font = new Font("PF Beausans Pro Light", 12F),
+					Font = new Font("PF Beausans Pro Light", 12F, FontStyle.Bold),
 					Text = "0"
 				};
 			}
@@ -95,11 +135,11 @@ namespace MIC_Monopolia {
 				statisticTableLayoutPanel.Controls.Add(pointsPlayersLabel[i], POINTS_COLUMN_INDEX, i);
 			}
 		}
-	
+
 		private int percents(int value, int per) {
 			return (value * per) / PERCENT_100;
 		}
-	
+
 		private void initializeNamePlayersDisTextBox() {
 			for (int i = 0; i < namePlayersDisTextBox.Length; i++) {
 				namePlayersDisTextBox[i] = new ImprovedLabel() {
@@ -114,14 +154,14 @@ namespace MIC_Monopolia {
 				statisticTableLayoutPanel.Controls.Add(namePlayersDisTextBox[i].TextBox, 1, i);
 			}
 		}
-	
+
 		private int calculateFieldSide() {
 			if ((cells.Length % SQUARE_SIDES_COUNT) != 0) {
 				return ERROR_INT;
 			}
 			return cells.Length / SQUARE_SIDES_COUNT;
 		}
-		
+
 		/// <summary>
 		/// Input 4 queues of cells
 		/// </summary>
@@ -166,11 +206,28 @@ namespace MIC_Monopolia {
 		}
 
 		private void MainField_Click(object sender, EventArgs e) {
-			
+
 		}
 
 		private void MainField_Load(object sender, EventArgs e) {
-			
+
 		}
+
+		#endregion
+		
+		#region Play
+		
+		private bool beginPlayCondition() {
+			foreach (ImprovedLabel m in namePlayersDisTextBox) {
+				if (m.Control == ImprovedLabel.OBJ.TextBox) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		
+		
+		#endregion
 	}
 }
