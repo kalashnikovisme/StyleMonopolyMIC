@@ -57,6 +57,36 @@ namespace GameItems {
 				return positionPlayers.ToArray<int>();
 			}
 		}
+
+		public int[] Money {
+			get {
+				List<int> money = new List<int>();
+				foreach (Player p in players) {
+					money.Add(p.Money);
+				}
+				return money.ToArray<int>();
+			}
+		}
+		
+		public int[] People {
+			get {
+				List<int> people = new List<int>();
+				foreach (Player p in players) {
+					people.Add(p.People);
+				}
+				return people.ToArray<int>();
+			}
+		}
+
+		public int[] Famous {
+			get {
+				List<int> famous= new List<int>();
+				foreach (Player p in players) {
+					famous.Add(p.Famous);
+				}
+				return famous.ToArray<int>();
+			}
+		}
 		
 		private List<int> getSamePositionsOfPlayer(int playerIndex) {
 			List<int> pos = new List<int>();

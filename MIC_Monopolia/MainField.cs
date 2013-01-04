@@ -17,7 +17,9 @@ namespace MIC_Monopolia {
 		private const int ERROR_INT = -1;
 		private const int LEFT_MOST_COLUMN = 0;
 		private const int DEFAULT_COUNT = 10;
-		private const int POINTS_COLUMN_INDEX = 2;
+		private const int MONEY_COLUMN_INDEX = 2;
+		private const int PEOPLE_COLUMN_INDEX = 3;
+		private const int FAMOUS_COLUMN_INDEX = 4;
 		private const string IMAGE_CHIPS_PATH = "chips/";
 
 
@@ -25,7 +27,9 @@ namespace MIC_Monopolia {
 		private Chip[] chips;
 		private Chip[] staticCloneChips;
 		private ImprovedLabel[] namePlayersDisTextBox;
-		private OpacityLabel[] pointsPlayersLabel;
+		private OpacityLabel[] moneyPlayersLabel;
+		private OpacityLabel[] peoplePlayersLabel;
+		private OpacityLabel[] famousPlayersLabel;
 		private TableLayoutPanel cubesPanel;
 		private Dice[] dices;
 		
@@ -49,7 +53,9 @@ namespace MIC_Monopolia {
 		public MainField(int playCellsCount, int playersCount) {
 			cells = new Cell[playCellsCount];
 			namePlayersDisTextBox = new ImprovedLabel[playersCount];
-			pointsPlayersLabel = new OpacityLabel[playersCount];
+			moneyPlayersLabel = new OpacityLabel[playersCount];
+			peoplePlayersLabel = new OpacityLabel[playersCount];
+			famousPlayersLabel = new OpacityLabel[playersCount];
 			chips = new Chip[DEFAULT_COUNT];
 			staticCloneChips = new Chip[DEFAULT_COUNT];
 			tasksStaticCloneChips = new Chip[DEFAULT_COUNT];
@@ -86,10 +92,12 @@ namespace MIC_Monopolia {
 			for (int i = 0; i < statisticTableLayoutPanel.RowCount; i++) {
 				statisticTableLayoutPanel.RowStyles.Insert(i, new RowStyle(SizeType.Percent, chipSidePercent));
 			}
+			statisticTableLayoutPanel.ColumnCount = FAMOUS_COLUMN_INDEX + 1;
 			statisticTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Absolute, percents(statisticTableLayoutPanel.Height, chipSidePercent)));
 			statisticTableLayoutPanel.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 80));
-			statisticTableLayoutPanel.ColumnStyles.Insert(POINTS_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 20));
-
+			statisticTableLayoutPanel.ColumnStyles.Insert(MONEY_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 10));
+			statisticTableLayoutPanel.ColumnStyles.Insert(PEOPLE_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 10));
+			statisticTableLayoutPanel.ColumnStyles.Insert(FAMOUS_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 10));
 			controlTableLayoutPanel.Controls.Add(cubesPanel, 0, 1);
 
 			createDicesPanel();
@@ -146,6 +154,7 @@ namespace MIC_Monopolia {
 		private void tasksPerformButton_Click(object sender, EventArgs e) {
 			int playerIndex = ((PerformButton)sender).PlayerIndex;
 			game.SetPointsToPlayer(playerIndex, game.PlayersPositions[playerIndex]);
+			viewDatas();
 		}
 
 		private void createDicesPanel() {
@@ -177,16 +186,30 @@ namespace MIC_Monopolia {
 		}
 
 		private void initializePointPlayersLabel() {
-			for (int i = 0; i < pointsPlayersLabel.Length; i++) {
-				pointsPlayersLabel[i] = new OpacityLabel() {
+			for (int i = 0; i < moneyPlayersLabel.Length; i++) {
+				moneyPlayersLabel[i] = new OpacityLabel() {
+					Dock = DockStyle.Fill,
+					TextAlign = ContentAlignment.MiddleCenter,
+					Font = new Font("PF Beausans Pro Light", 12F, FontStyle.Bold),
+					Text = "0"
+				};
+				peoplePlayersLabel[i] = new OpacityLabel() {
+					Dock = DockStyle.Fill,
+					TextAlign = ContentAlignment.MiddleCenter,
+					Font = new Font("PF Beausans Pro Light", 12F, FontStyle.Bold),
+					Text = "0"
+				};
+				famousPlayersLabel[i] = new OpacityLabel() {
 					Dock = DockStyle.Fill,
 					TextAlign = ContentAlignment.MiddleCenter,
 					Font = new Font("PF Beausans Pro Light", 12F, FontStyle.Bold),
 					Text = "0"
 				};
 			}
-			for (int i = 0; i < pointsPlayersLabel.Length; i++) {
-				statisticTableLayoutPanel.Controls.Add(pointsPlayersLabel[i], POINTS_COLUMN_INDEX, i);
+			for (int i = 0; i < moneyPlayersLabel.Length; i++) {
+				statisticTableLayoutPanel.Controls.Add(moneyPlayersLabel[i], MONEY_COLUMN_INDEX, i);
+				statisticTableLayoutPanel.Controls.Add(peoplePlayersLabel[i], PEOPLE_COLUMN_INDEX, i);
+				statisticTableLayoutPanel.Controls.Add(famousPlayersLabel[i], FAMOUS_COLUMN_INDEX, i);
 			}
 		}
 
@@ -333,6 +356,9 @@ namespace MIC_Monopolia {
 			cells[currentPosition].Controls.Add(chips[currentPlayerIndex]);
 			tasksLabels[currentPlayerIndex].Text = cells[currentPosition].Task;
 			positionLabels[currentPlayerIndex].Text = currentPosition.ToString();
+			moneyPlayersLabel[currentPlayerIndex].Text = game.Money[currentPlayerIndex].ToString();
+			peoplePlayersLabel[currentPlayerIndex].Text = game.People[currentPlayerIndex].ToString();
+			famousPlayersLabel[currentPlayerIndex].Text = game.Famous[currentPlayerIndex].ToString();
 		}
 		
 		private void adjustSizeOfChips(int player, int position) {
