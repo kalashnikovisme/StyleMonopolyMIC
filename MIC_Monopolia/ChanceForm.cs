@@ -51,9 +51,9 @@ namespace GameItems {
 
 		private void ChanceForm_Click(object sender, EventArgs e) {
 			int index = ((AppButton)sender).Index;
-			ChosenIndex = index;
 			Random r = new Random();
-			tasksButtons[index].Text = File.ReadAllLines(@CHANCE_TASK_FILE_PATH, System.Text.Encoding.Default)[r.Next(0, tasksButtons.Length - 1)];
+			ChosenIndex = r.Next(0, tasksButtons.Length - 1);
+			tasksButtons[index].Text = File.ReadAllLines(@CHANCE_TASK_FILE_PATH, System.Text.Encoding.Default)[ChosenIndex].Split('\t')[0];
 			tasksButtons[index].Click -= new EventHandler(ChanceForm_Click);
 			tasksButtons[index].Click += new EventHandler(ChanceFormButtonHide_Click);
 		}
