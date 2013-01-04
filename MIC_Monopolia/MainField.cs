@@ -267,21 +267,35 @@ namespace MIC_Monopolia {
 		}
 		
 		private void adjustSizeOfChips(int player, int position) {
+			for (int i = 0; i < players.Length; i++) {
+				if (game.GetSamePositionsOfPlayer(i).Count == 0) {
+					chips[i].Dock = DockStyle.Fill;
+				}
+			}
 			if (game.SamePositionsOfCurrentPlayer.Count == 1) {
 				Size halfCellSize = new Size(cells[position].Width / 2, cells[position].Height);
-				chips[game.CurrentPlayerIndex].Size = halfCellSize;
+				chips[player].Size = halfCellSize;
 				chips[game.SamePositionsOfCurrentPlayer[0]].Size = halfCellSize;
 				
-				chips[game.CurrentPlayerIndex].Dock = DockStyle.Left;
+				chips[player].Dock = DockStyle.Left;
 				chips[game.SamePositionsOfCurrentPlayer[0]].Dock = DockStyle.Right;
 				return;
 			}
-			//if ((game.SamePositionsOfCurrentPlayer.Count == 2) || (game.SamePositionsOfCurrentPlayer.Count == 3)) {
-			//    chips[game.CurrentPlayerIndex].Dock = DockStyle.None;
-			//    foreach (int i in game.SamePositionsOfCurrentPlayer) {
-			//        chips[i].Dock = DockStyle.None;
-			//    }
-			//}
+			if ((game.SamePositionsOfCurrentPlayer.Count == 2) || (game.SamePositionsOfCurrentPlayer.Count == 3)) {
+				Size quarterCellSize = new Size(cells[position].Width / 2, cells[position].Height / 2);				
+				chips[player].Dock = DockStyle.None;
+				chips[player].Size = quarterCellSize;
+				foreach (int i in game.SamePositionsOfCurrentPlayer) {
+					chips[i].Dock = DockStyle.None;
+					chips[i].Size = quarterCellSize;
+				}
+				chips[player].Location = new Point(0, 0);
+				chips[game.SamePositionsOfCurrentPlayer[0]].Location = new Point(quarterCellSize.Width, 0);
+				chips[game.SamePositionsOfCurrentPlayer[1]].Location = new Point(0, quarterCellSize.Height);
+				if (game.SamePositionsOfCurrentPlayer.Count == 3) {
+					chips[game.SamePositionsOfCurrentPlayer[2]].Location = new Point(quarterCellSize);
+				}
+			}
 		}
 		
 		#endregion

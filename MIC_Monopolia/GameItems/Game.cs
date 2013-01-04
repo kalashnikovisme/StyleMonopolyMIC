@@ -51,19 +51,27 @@ namespace GameItems {
 			}
 		}
 		
+		private List<int> getSamePositionsOfPlayer(int playerIndex) {
+			List<int> pos = new List<int>();
+			for (int i = 0; i < players.Length; i++) {
+				if (i == playerIndex) {
+					continue;
+				}
+				if (players[i].Position == players[playerIndex].Position) {
+					pos.Add(i);
+				}
+			}
+			return pos;
+		}
+		
 		public List<int> SamePositionsOfCurrentPlayer {
 			get {
-				List<int> pos = new List<int>();
-				for (int i = 0; i < players.Length; i++) {
-					if (i == CurrentPlayerIndex) {
-						continue;
-					}
-					if (players[i].Position == players[CurrentPlayerIndex].Position) {
-						pos.Add(i);
-					}
-				}
-				return pos;
+				return getSamePositionsOfPlayer(CurrentPlayerIndex);
 			}
 		}
+		
+		public List<int> GetSamePositionsOfPlayer(int playerIndex) {
+			return getSamePositionsOfPlayer(playerIndex);
+		} 
 	}
 }
