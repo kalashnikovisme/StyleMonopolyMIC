@@ -338,7 +338,7 @@ namespace MIC_Monopolia {
 				isGame = true;
 			}
 			game.NextMove(sumPointsOfDices());
-
+			game.CheckCell(cells[game.PlayersPositions[game.CurrentPlayerIndex]].Task);
 			viewDatas();
 		}
 		

@@ -11,6 +11,8 @@ namespace GameItems {
 		private const int PEOPLE = 1;
 		private const int FAMOUS = 2;
 		
+		private const string CHANCE = "Шанс";
+		
 		private const int GAME_IS_NOT_BEGIN = -1;
 		private int currentPlayerIndex = GAME_IS_NOT_BEGIN;
 		public int CurrentPlayerIndex {
@@ -45,6 +47,12 @@ namespace GameItems {
 				players[currentPlayerIndex].Position %= cellCount;
 			}
 			
+		}
+		
+		public void CheckCell(string taskCell) {
+			if (taskCell == CHANCE) {
+				ChanceForm chance = new ChanceForm();
+			}
 		}
 		
 		private List<int> positionPlayers;

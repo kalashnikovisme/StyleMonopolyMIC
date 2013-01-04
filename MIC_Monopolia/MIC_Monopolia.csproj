@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChanceForm.Designer.cs">
+      <DependentUpon>ChanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PerformButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -86,6 +92,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChanceForm.resx">
+      <DependentUpon>ChanceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainField.resx">
       <DependentUpon>MainField.cs</DependentUpon>
       <SubType>Designer</SubType>
