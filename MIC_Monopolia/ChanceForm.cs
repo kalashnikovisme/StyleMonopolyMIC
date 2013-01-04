@@ -32,11 +32,13 @@ namespace GameItems {
 			for (int i = 0; i < tasksButtons.Length; i++) {
 				tasksButtons[i] = new AppButton() {
 					Font = new Font("PF Beausans Pro Light", 12F),
-					Text = tasks[i],
+					Text = (i + 1).ToString(),
 					Size = new Size(50, 50),
 					Dock = DockStyle.Fill,
-					Margin = new Padding(10)
+					Margin = new Padding(10),
+					Index = i
 				};
+				tasksButtons[i].Click += new EventHandler(ChanceForm_Click);
 			}
 			
 			foreach (AppButton b in tasksButtons) {
@@ -44,6 +46,21 @@ namespace GameItems {
 			}
 			
 			this.Show();
+		}
+
+		private void ChanceForm_Click(object sender, EventArgs e) {
+			int index = ((AppButton)sender).Index;
+			Random r = new Random();
+			tasksButtons[index].Text = File.ReadAllLines(@CHANCE_TASK_FILE_PATH, System.Text.Encoding.Default)[r.Next(0, tasksButtons.Length - 1)];
+			tasksButtons[index].Click -= new EventHandler(ChanceForm_Click);
+			tasksButtons[index].Click += new EventHandler(ChanceFormButtonHide_Click);
+		}
+		
+		private void ChanceFormButtonHide_Click(object sender, EventArgs e) {
+			int index = ((AppButton)sender).Index;
+			tasksButtons[index].Text = (index + 1).ToString();
+			tasksButtons[index].Click -= new EventHandler(ChanceFormButtonHide_Click);			
+			tasksButtons[index].Click += new EventHandler(ChanceForm_Click);
 		}
 	}
 }

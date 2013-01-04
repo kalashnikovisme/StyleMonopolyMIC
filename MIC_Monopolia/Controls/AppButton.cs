@@ -10,6 +10,11 @@ namespace UsefulControls {
 		public AppButton() {
 			this.Dock = DockStyle.Fill;
 			this.SizeChanged += new EventHandler(AppButton_SizeChanged);
+			this.TextChanged += new EventHandler(AppButton_TextChanged);
+		}
+
+		private void AppButton_TextChanged(object sender, EventArgs e) {
+			resizeFont();
 		}
 
 		private void AppButton_SizeChanged(object sender, EventArgs e) {
@@ -127,5 +132,21 @@ namespace UsefulControls {
 			this.Font = resFont;
 		}
 
+
+		
+
+		private const int ERROR = -1;
+		private int index = ERROR;
+		public int Index {
+			get {
+				if (index == ERROR) {
+					throw new Exception("Index AppButton has not been set");
+				}
+				return index;
+			}
+			set {
+				index = value;
+			}
+		}
 	}
 }
