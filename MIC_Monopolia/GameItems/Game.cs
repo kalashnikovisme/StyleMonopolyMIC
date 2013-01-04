@@ -50,9 +50,9 @@ namespace GameItems {
 		}
 		
 		public void CheckCell(string taskCell) {
-			if (taskCell == CHANCE) {
+			//if (taskCell == CHANCE) {
 				ChanceForm chance = new ChanceForm();
-			}
+			//}
 		}
 		
 		private List<int> positionPlayers;
