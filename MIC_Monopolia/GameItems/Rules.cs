@@ -7,7 +7,7 @@ namespace GameItems {
 	static public class Rules {
 		static public List<string> AllRules {
 			get {
-				string[] str = File.ReadAllLines(@"tasks.txt", System.Text.Encoding.Default);
+				string[] str = File.ReadAllLines(@"points.txt", System.Text.Encoding.Default);
 				List<string> s = new List<string>();
 				foreach (string st in str) {
 					s.Add(st.Split('\t')[0]);
@@ -17,7 +17,7 @@ namespace GameItems {
 		}
 		
 		static private List<int[]> setPoints() {
-			string[] datas = File.ReadAllLines(@"tasks.txt", System.Text.Encoding.Default);
+			string[] datas = File.ReadAllLines(@"points.txt", System.Text.Encoding.Default);
 			List<int[]> dic = new List<int[]>();
 			foreach (string d in datas) {
 				if (d.Split('\t').Length == 1) {
