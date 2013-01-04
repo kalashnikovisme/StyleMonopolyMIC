@@ -48,22 +48,26 @@ namespace GameItems {
 		}
 
 		private bool bankrupt(int playerIndex) {
-			return ((players[playerIndex].Money < 0) && 
+			return ((players[playerIndex].Money < -100) && 
 					(players[playerIndex].People <= 0) && 
-					(players[playerIndex].Famous < 0));
+					(players[playerIndex].Famous < -100));
 		}
 
 		public delegate void BankruptEventHandler(int playerIndex);
 		public event BankruptEventHandler PlayerBankKrupt;
 
-		public void NextMove(int value) {
+		private void incrementIndex() {
 			if (++currentPlayerIndex >= players.Length) {
 				currentPlayerIndex = 0;
 				AllPlayersHaveMoved = true;
 			}
+		}
+
+		public void NextMove(int value) {
+			incrementIndex();
 			if (players[currentPlayerIndex].Lose) {
 				while (players[currentPlayerIndex].Lose) {
-					currentPlayerIndex++;
+					incrementIndex();
 				}
 			}
 			if (bankrupt(currentPlayerIndex)) {
@@ -84,6 +88,17 @@ namespace GameItems {
 			}
 			if (activities.Contains(taskCell)) {
 				ChanceForm chance = new ChanceForm(currentPlayerIndex, taskCell);
+				chance.Answer += chance_answer;
+			}
+		}
+
+		private void chance_answer(bool rightAnswer) {
+			if (rightAnswer) {
+				setPointsToPlayers(currentPlayerIndex, new int[] { 10, 10, 10 });
+				ChanceFormClosed(this, EventArgs.Empty);
+			} else {
+				setPointsToPlayers(currentPlayerIndex, new int[] { -10, -10, -10 });
+				ChanceFormClosed(this, EventArgs.Empty);
 			}
 		}
 
@@ -93,9 +108,6 @@ namespace GameItems {
 			string data = System.IO.File.ReadAllLines(@"chance.txt", System.Text.Encoding.Default)[((ChanceForm)sender).ChosenIndex];
 			int[] points = new int[] { Int32.Parse(data.Split('\t')[1]), Int32.Parse(data.Split('\t')[2]), Int32.Parse(data.Split('\t')[3]) };
 			setPointsToPlayers(currentPlayerIndex, points);
-			System.Windows.Forms.MessageBox.Show(points[0].ToString());
-			System.Windows.Forms.MessageBox.Show(points[1].ToString());
-			System.Windows.Forms.MessageBox.Show(points[2].ToString());
 			ChanceFormClosed(this, EventArgs.Empty);
 		}
 

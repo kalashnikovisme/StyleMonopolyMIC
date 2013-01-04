@@ -345,7 +345,7 @@ namespace MIC_Monopolia {
 
 		private void game_playerBankKrupt(int bankruptPlayerIndex) {
 			chips[bankruptPlayerIndex].Visible = false;
-			namePlayersDisTextBox[bankruptPlayerIndex].Enabled = false;
+			namePlayersDisTextBox[bankruptPlayerIndex].Font = new System.Drawing.Font("PF Beausans Pro Light", 12F, FontStyle.Strikeout);
 			moneyPlayersLabel[bankruptPlayerIndex].Enabled = false;
 			famousPlayersLabel[bankruptPlayerIndex].Enabled = false;
 			peoplePlayersLabel[bankruptPlayerIndex].Enabled = false;

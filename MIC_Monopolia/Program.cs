@@ -12,7 +12,7 @@ namespace MIC_Monopolia {
 		static void Main() {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainField(40, 10));
+			Application.Run(new MainField(40, 4));
 		}
 	}
 }
