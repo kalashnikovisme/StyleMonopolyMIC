@@ -52,7 +52,7 @@
     <Compile Include="Controls\AppButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Chip.cs">
+    <Compile Include="GameItems\Chip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ImprovedLabel.cs">

@@ -6,7 +6,18 @@ using System.Text;
 namespace GameItems {
 	public class Game {
 		private Player[] players;
-		private int currentPlayerIndex = -1;
+		
+		private const int GAME_IS_NOT_BEGIN = -1;
+		private int currentPlayerIndex = GAME_IS_NOT_BEGIN;
+		public int CurrentPlayerIndex {
+			get {
+				if (currentPlayerIndex == GAME_IS_NOT_BEGIN) {
+					throw new Exception("The game is not started");
+				}
+				return currentPlayerIndex;
+			}
+		}
+		
 		private int cellCount = 0;
 		
 		public Game(Player[] gamePlayers, int gameCellCount) {
@@ -14,20 +25,19 @@ namespace GameItems {
 			for (int i = 0; i < players.Length; i++) {
 				players[i].Position = 0;
 			}
-			currentPlayerIndex++;
 			
 			cellCount = gameCellCount;
 		}
 		
 		public void NextMove(int value) {
+			if (++currentPlayerIndex >= players.Length) {
+				currentPlayerIndex = 0;
+			}
 			players[currentPlayerIndex].Position += value;
 			if (players[currentPlayerIndex].Position >= cellCount) {
 				players[currentPlayerIndex].Position %= cellCount;
 			}
-			currentPlayerIndex++;
-			if (currentPlayerIndex >= players.Length) {
-				currentPlayerIndex = 0;
-			}
+			
 		}
 		
 		private List<int> positionPlayers;

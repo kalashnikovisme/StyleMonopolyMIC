@@ -247,13 +247,17 @@ namespace MIC_Monopolia {
 				isGame = true;
 			}
 			game.NextMove(sumPointsOfDices());
-			loadDatas();
+
+			viewDatas();
 		}
 		
-		private void loadDatas() {
+		private void viewDatas() {
 			for (int i = 0; i < game.PlayersPositions.Length; i++) {
 				pointsPlayersLabel[i].Text = game.PlayersPositions[i].ToString();
 			}
+			
+			int currentPlayerIndex = game.CurrentPlayerIndex;
+			cells[game.PlayersPositions[currentPlayerIndex]].Controls.Add(chips[currentPlayerIndex]);
 		}
 		
 		#endregion
