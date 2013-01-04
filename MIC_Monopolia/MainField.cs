@@ -283,9 +283,8 @@ namespace MIC_Monopolia {
 				chips[game.SamePositionsOfCurrentPlayer[0]].Dock = DockStyle.Right;
 				return;
 			}
-			const int fault = 10;
 			if ((game.SamePositionsOfCurrentPlayer.Count == 2) || (game.SamePositionsOfCurrentPlayer.Count == 3)) {
-				Size quarterCellSize = new Size((cells[position].Width / 2) - fault, (cells[position].Height / 2) - fault);				
+				Size quarterCellSize = new Size(cells[position].Width / 2, cells[position].Height / 2);				
 				chips[player].Dock = DockStyle.None;
 				chips[player].Size = quarterCellSize;
 				foreach (int i in game.SamePositionsOfCurrentPlayer) {
