@@ -228,6 +228,84 @@
   <ItemGroup>
     <None Include="Resources\5454.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\area.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brendbook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comandirovka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\departament.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dialog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\findrising.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flashmob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fns.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\it.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leader.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\master.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\meeting.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\office.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\request.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rubyonrails.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sms.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tarif.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\updatesite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\presentation.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\good.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

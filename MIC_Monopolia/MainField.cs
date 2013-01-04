@@ -344,6 +344,7 @@ namespace MIC_Monopolia {
 			game.NextMove(sumPointsOfDices());
 			game.CheckCell(cells[game.PlayersPositions[game.CurrentPlayerIndex]].Task);
 			viewDatas();
+			distinguishCells();
 		}
 
 		private void game_NewFormIsOpen(object sender, EventArgs e) {
@@ -381,6 +382,16 @@ namespace MIC_Monopolia {
 			}
 		}
 
+		private void distinguishCells() {
+			for (int i = 0; i < cells.Length; i++) {
+				if (game.PlayersPositions.Contains(i)) {
+					cells[i].BorderStyle = BorderStyle.Fixed3D;
+				} else {
+					cells[i].BorderStyle = BorderStyle.None;
+				}
+			}
+		}
+
 		private void tasksPerformButton_Click(object sender, EventArgs e) {
 			int playerIndex = ((PerformButton)sender).PlayerIndex;
 			game.SetPointsToPlayer(playerIndex, game.PlayersPositions[playerIndex]);
@@ -403,7 +414,7 @@ namespace MIC_Monopolia {
 				return;
 			}
 			if ((game.SamePositionsOfCurrentPlayer.Count == 2) || (game.SamePositionsOfCurrentPlayer.Count == 3)) {
-				Size quarterCellSize = new Size(cells[position].Width / 2, cells[position].Height / 2);				
+				Size quarterCellSize = new Size((cells[position].Width / 2) - 1, (cells[position].Height / 2) - 1);				
 				chips[player].Dock = DockStyle.None;
 				chips[player].Size = quarterCellSize;
 				foreach (int i in game.SamePositionsOfCurrentPlayer) {
@@ -471,7 +482,7 @@ namespace MIC_Monopolia {
 		private void putImageInCells() {
 			for (int i = 0; i < cells.Length; i++) {
 				if (cells[i].Task == "План работы") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.Plan;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.plan;
 				}
 				if (cells[i].Task == "Шанс") {
 					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.chance;
@@ -480,10 +491,10 @@ namespace MIC_Monopolia {
 					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.pravo;
 				}
 				if (cells[i].Task == "Фандрайзинг") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.money;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.findrising;
 				}
 				if (cells[i].Task == "Создать сайт") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.site;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.rubyonrails;
 				}
 				if (cells[i].Task == "Диалог культур") {
 					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
@@ -492,64 +503,64 @@ namespace MIC_Monopolia {
 					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.foto;
 				}
 				if (cells[i].Task == "Свой тариф") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.tarif;
 				}
 				if (cells[i].Task == "Лидер") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.leader;
 				}
 				if (cells[i].Task == "Мастер-класс") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.master;
 				}
 				if (cells[i].Task == "Командировка") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.comandirovka;
 				}
 				if (cells[i].Task == "Пресс-релиз") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.press;
 				}
 				if (cells[i].Task == "Департамент по молодёжной политике") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.departament;
 				}
 				if (cells[i].Task == "Профильная смена") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.profile;
 				}
 				if (cells[i].Task == "СМС-акция") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.sms;
 				}
 				if (cells[i].Task == "Inформация") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.information;
 				}
 				if (cells[i].Task == "Обновить сайт") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.updatesite;
 				}
 				if (cells[i].Task == "Налоговая") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.fns;
 				}
 				if (cells[i].Task == "Презентация на день молодёжи") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.presentation;
 				}
 				if (cells[i].Task == "Провести общее собрание членов отделения") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.meeting;
 				}
 				if (cells[i].Task == "Добро") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.good;
 				}
 				if (cells[i].Task == "Бренд-бук") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.brendbook;
 				}
 				if (cells[i].Task == "Подать заявку на грант") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.request;
 				}
 				if (cells[i].Task == "Корпоратив") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.logo;
 				}
 				if (cells[i].Task == "Работа с администрацией района") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.area;
 				}
 				if (cells[i].Task == "Флеш-моб") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.flashmob;
 				}
 				if (cells[i].Task == "Информационные технологии") {
-					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.dialog;
+					cells[i].BackgroundImage = global::MIC_Monopolia.Properties.Resources.it;
 				}
 			}
 		}

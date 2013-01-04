@@ -63,9 +63,19 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap administration {
+        internal static System.Drawing.Bitmap area {
             get {
-                object obj = ResourceManager.GetObject("administration", resourceCulture);
+                object obj = ResourceManager.GetObject("area", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap brendbook {
+            get {
+                object obj = ResourceManager.GetObject("brendbook", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +93,19 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap comingAnyWhere {
+        internal static System.Drawing.Bitmap comandirovka {
             get {
-                object obj = ResourceManager.GetObject("comingAnyWhere", resourceCulture);
+                object obj = ResourceManager.GetObject("comandirovka", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap departament {
+            get {
+                object obj = ResourceManager.GetObject("departament", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +123,29 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap findrising {
+            get {
+                object obj = ResourceManager.GetObject("findrising", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap flashmob {
             get {
                 object obj = ResourceManager.GetObject("flashmob", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fns {
+            get {
+                object obj = ResourceManager.GetObject("fns", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +173,9 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap informat {
+        internal static System.Drawing.Bitmap information {
             get {
-                object obj = ResourceManager.GetObject("informat", resourceCulture);
+                object obj = ResourceManager.GetObject("information", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,36 +233,6 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap money {
-            get {
-                object obj = ResourceManager.GetObject("money", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap nalogovaya {
-            get {
-                object obj = ResourceManager.GetObject("nalogovaya", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap obnovlyat_sayt {
-            get {
-                object obj = ResourceManager.GetObject("obnovlyat_sayt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap office {
             get {
                 object obj = ResourceManager.GetObject("office", resourceCulture);
@@ -233,9 +243,9 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Plan {
+        internal static System.Drawing.Bitmap plan {
             get {
-                object obj = ResourceManager.GetObject("Plan", resourceCulture);
+                object obj = ResourceManager.GetObject("plan", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,9 +283,29 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap site {
+        internal static System.Drawing.Bitmap profile {
             get {
-                object obj = ResourceManager.GetObject("site", resourceCulture);
+                object obj = ResourceManager.GetObject("profile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap request {
+            get {
+                object obj = ResourceManager.GetObject("request", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rubyonrails {
+            get {
+                object obj = ResourceManager.GetObject("rubyonrails", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +323,9 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap terehin {
+        internal static System.Drawing.Bitmap tarif {
             get {
-                object obj = ResourceManager.GetObject("terehin", resourceCulture);
+                object obj = ResourceManager.GetObject("tarif", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,9 +333,9 @@ namespace MIC_Monopolia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap young {
+        internal static System.Drawing.Bitmap updatesite {
             get {
-                object obj = ResourceManager.GetObject("young", resourceCulture);
+                object obj = ResourceManager.GetObject("updatesite", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
