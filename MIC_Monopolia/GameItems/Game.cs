@@ -12,6 +12,17 @@ namespace GameItems {
 		private const int FAMOUS = 2;
 
 		private const string CHANCE = "Шанс";
+
+		private const string LEADER = "Лидер";
+		private const string INFORMATION = "Inформация";
+		private const string LAW = "Право";
+		private const string DIALOGUE_CULTURES = "Диалог культур";
+		private const string GOOD = "Добро";
+		private const string IT = "Информационные технологии";
+		private const string CORPORATE = "Корпоратив";
+
+		private string[] activities = new string[] { LEADER, INFORMATION, LAW, DIALOGUE_CULTURES, GOOD, IT, CORPORATE };
+
 		private const int GAME_IS_NOT_BEGIN = -1;
 		private int currentPlayerIndex = GAME_IS_NOT_BEGIN;
 		public int CurrentPlayerIndex {
@@ -67,8 +78,12 @@ namespace GameItems {
 
 		public void CheckCell(string taskCell) {
 			if (taskCell == CHANCE) {
-				ChanceForm chance = new ChanceForm(currentPlayerIndex);
+				ChanceForm chance = new ChanceForm(currentPlayerIndex, CHANCE);
 				chance.FormClosing += chance_FormClosing;
+				return;
+			}
+			if (activities.Contains(taskCell)) {
+				ChanceForm chance = new ChanceForm(currentPlayerIndex, taskCell);
 			}
 		}
 
