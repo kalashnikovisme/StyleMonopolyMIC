@@ -31,7 +31,7 @@ namespace GameItems {
 				Size = new Size(40, 40),
 				BackColor = Color.FromArgb(0)
 			};
-			this.Controls.Add(label);
+			//this.Controls.Add(label);
 			
 			this.Dock = DockStyle.Fill;
 			this.BackColor = Color.White;
