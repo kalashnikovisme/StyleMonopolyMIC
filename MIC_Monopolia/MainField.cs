@@ -17,9 +17,11 @@ namespace MIC_Monopolia {
 		private const int LEFT_MOST_COLUMN = 0;
 		private const int CHIPS_COUNT = 10;
 		private const int POINTS_COLUMN_INDEX = 2;
+		private const string IMAGE_CHIPS_PATH = "chips/";
+
 
 		private Cell[] cells;
-		private Chip[] chips;
+		private PictureBox[] chips;
 		private ImprovedLabel[] namePlayersDisTextBox;
 		private OpacityLabel[] pointsPlayersLabel;
 		private TableLayoutPanel cubesPanel;
@@ -198,7 +200,9 @@ namespace MIC_Monopolia {
 		/// </summary>
 		private void initilizeChips() {
 			for (int i = 0; i < CHIPS_COUNT; i++) {
-				chips[i] = new Chip(orderColor[i]);
+				chips[i] = new Chip() {
+					Image = Image.FromFile(IMAGE_CHIPS_PATH + i.ToString() + ".png")
+				};
 			}
 			for (int i = players.Length; i < CHIPS_COUNT; i++) {
 				chips[i].Visible = false;
@@ -257,8 +261,34 @@ namespace MIC_Monopolia {
 			}
 			
 			int currentPlayerIndex = game.CurrentPlayerIndex;
-			cells[game.PlayersPositions[currentPlayerIndex]].Controls.Add(chips[currentPlayerIndex]);
+			int currentPosition = game.PlayersPositions[currentPlayerIndex];
+			adjustSizeOfChips(currentPlayerIndex, currentPosition);
+			cells[currentPosition].Controls.Add(chips[currentPlayerIndex]);
 		}
+		
+		private void adjustSizeOfChips(int player, int position) {
+			if (game.SamePositionsOfCurrentPlayer.Count == 1) {
+				Size halfCellSize = new Size(cells[position].Width / 2, cells[position].Height);
+				chips[game.CurrentPlayerIndex].Size = halfCellSize;
+				chips[game.SamePositionsOfCurrentPlayer[0]].Size = halfCellSize;
+				
+				chips[game.CurrentPlayerIndex].Dock = DockStyle.Left;
+				chips[game.SamePositionsOfCurrentPlayer[0]].Dock = DockStyle.Right;
+				return;
+			}
+			//if ((game.SamePositionsOfCurrentPlayer.Count == 2) || (game.SamePositionsOfCurrentPlayer.Count == 3)) {
+			//    chips[game.CurrentPlayerIndex].Dock = DockStyle.None;
+			//    foreach (int i in game.SamePositionsOfCurrentPlayer) {
+			//        chips[i].Dock = DockStyle.None;
+			//    }
+			//}
+		}
+		
+		#endregion
+		
+		#region Animation
+		
+		
 		
 		#endregion
 	}

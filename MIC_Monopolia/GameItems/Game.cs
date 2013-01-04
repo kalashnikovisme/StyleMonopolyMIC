@@ -50,5 +50,20 @@ namespace GameItems {
 				return positionPlayers.ToArray<int>();
 			}
 		}
+		
+		public List<int> SamePositionsOfCurrentPlayer {
+			get {
+				List<int> pos = new List<int>();
+				for (int i = 0; i < players.Length; i++) {
+					if (i == CurrentPlayerIndex) {
+						continue;
+					}
+					if (players[i].Position == players[CurrentPlayerIndex].Position) {
+						pos.Add(i);
+					}
+				}
+				return pos;
+			}
+		}
 	}
 }

@@ -48,11 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ConstControls.cs" />
-    <Compile Include="Controls\AppButton.cs">
+    <Compile Include="GameItems\Chip.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GameItems\Chip.cs">
+    <Compile Include="Controls\ConstControls.cs" />
+    <Compile Include="Controls\AppButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ImprovedLabel.cs">
