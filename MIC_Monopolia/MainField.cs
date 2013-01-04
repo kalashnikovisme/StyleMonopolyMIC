@@ -66,7 +66,7 @@ namespace MIC_Monopolia {
 			players = new Player[playersCount];
 
 			InitializeComponent();
-			this.Font = new Font("PF Beausans Pro Light", 12F);
+			this.Font = new Font("PF Beausans Pro Light", 15F, FontStyle.Bold);
 
 			createField();
 
@@ -117,8 +117,12 @@ namespace MIC_Monopolia {
 			spaceTableLayoutPanel.Controls.Add(taskTableLayoutPanel, 1, 1);
 			spaceTableLayoutPanel.SetColumnSpan(taskTableLayoutPanel, calculateFieldSide() - 2);
 			spaceTableLayoutPanel.SetRowSpan(taskTableLayoutPanel, calculateFieldSide() - 2);
-			
+			spaceTableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+
 			taskTableLayoutPanel.ColumnCount = 4;
+			taskTableLayoutPanel.BackgroundImage = global::MIC_Monopolia.Properties.Resources.wall;
+			taskTableLayoutPanel.BackgroundImageLayout = ImageLayout.Zoom;
+			taskTableLayoutPanel.BackColor = Color.White;
 			taskTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.AutoSize));
 			taskTableLayoutPanel.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 70));
 			taskTableLayoutPanel.ColumnStyles.Insert(2, new ColumnStyle(SizeType.AutoSize));
