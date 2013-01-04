@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MIC_Monopolia {
+namespace GameItems {
 	public class Chip : PictureBox {
 		public Chip() {
 			this.Dock = DockStyle.Fill;

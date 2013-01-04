@@ -50,15 +50,21 @@ namespace GameItems {
 
 		public void CheckCell(string taskCell) {
 			if (taskCell == CHANCE) {
-				ChanceForm chance = new ChanceForm();
+				ChanceForm chance = new ChanceForm(currentPlayerIndex);
 				chance.FormClosing += chance_FormClosing;
 			}
 		}
+
+		public event EventHandler ChanceFormClosed;
 
 		private void chance_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e) {
 			string data = System.IO.File.ReadAllLines(@"chance.txt", System.Text.Encoding.Default)[((ChanceForm)sender).ChosenIndex];
 			int[] points = new int[] { Int32.Parse(data.Split('\t')[1]), Int32.Parse(data.Split('\t')[2]), Int32.Parse(data.Split('\t')[3]) };
 			setPointsToPlayers(currentPlayerIndex, points);
+			System.Windows.Forms.MessageBox.Show(points[0].ToString());
+			System.Windows.Forms.MessageBox.Show(points[1].ToString());
+			System.Windows.Forms.MessageBox.Show(points[2].ToString());
+			ChanceFormClosed(this, EventArgs.Empty);
 		}
 
 		private List<int> positionPlayers;

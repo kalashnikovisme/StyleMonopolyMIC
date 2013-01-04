@@ -15,12 +15,17 @@ namespace GameItems {
 		private AppButton[] tasksButtons;
 		private const int PERCENT_100 = 100;
 		public int ChosenIndex = -1;
-		
-		public ChanceForm() {
+
+		private Chip currentPlayerChip;
+
+		public ChanceForm(int currentPlayer) {
 			InitializeComponent();
+			currentPlayerChip = new Chip() {
+				BackgroundImage = Image.FromFile("chips/" + currentPlayer.ToString() + ".png")
+			};
 			string[] tasks = File.ReadAllLines(@CHANCE_TASK_FILE_PATH, System.Text.Encoding.Default);
-			tasksButtons = new AppButton[tasks.Length];
-			double qur = Math.Round(Math.Sqrt((double)tasks.Length), 0, MidpointRounding.AwayFromZero);
+			tasksButtons = new AppButton[tasks.Length + 1];
+			double qur = Math.Round(Math.Sqrt((double)tasksButtons.Length), 0, MidpointRounding.AwayFromZero);
 			int sideTableCount = (int)qur;
 			mainTableLayoutPanel.ColumnCount = sideTableCount;
 			mainTableLayoutPanel.RowCount = sideTableCount;
@@ -41,11 +46,11 @@ namespace GameItems {
 				};
 				tasksButtons[i].Click += new EventHandler(ChanceForm_Click);
 			}
-			
+
 			foreach (AppButton b in tasksButtons) {
 				mainTableLayoutPanel.Controls.Add(b);
 			}
-			
+			mainTableLayoutPanel.Controls.Add(currentPlayerChip);
 			this.Show();
 		}
 

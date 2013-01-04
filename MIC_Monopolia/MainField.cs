@@ -335,10 +335,15 @@ namespace MIC_Monopolia {
 			}
 			if (isGame == false) {
 				game = new Game(players, cells.Length);
+				game.ChanceFormClosed += game_ChanceFormClosed;
 				isGame = true;
 			}
 			game.NextMove(sumPointsOfDices());
 			game.CheckCell(cells[game.PlayersPositions[game.CurrentPlayerIndex]].Task);
+			viewDatas();
+		}
+
+		private void game_ChanceFormClosed(object sender, EventArgs e) {
 			viewDatas();
 		}
 		
