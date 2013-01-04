@@ -19,10 +19,20 @@ namespace GameItems {
 			}
 			set {
 				index = value;
+				label.Text = index.ToString();
 			}
 		}
 		
+		private Label label;
+		
 		public Cell(int cellIndex) {
+			label = new Label() {
+				Location = new Point(0, 0),
+				Size = new Size(15, 15),
+				BackColor = Color.FromArgb(0)
+			};
+			//this.Controls.Add(label);
+			
 			Index = cellIndex;
 			
 			this.Dock = DockStyle.Fill;

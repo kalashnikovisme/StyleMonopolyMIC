@@ -21,7 +21,7 @@ namespace MIC_Monopolia {
 
 
 		private Cell[] cells;
-		private PictureBox[] chips;
+		private Chip[] chips;
 		private ImprovedLabel[] namePlayersDisTextBox;
 		private OpacityLabel[] pointsPlayersLabel;
 		private TableLayoutPanel cubesPanel;
@@ -282,6 +282,7 @@ namespace MIC_Monopolia {
 				return;
 			}
 			if ((game.SamePositionsOfCurrentPlayer.Count == 2) || (game.SamePositionsOfCurrentPlayer.Count == 3)) {
+				MessageBox.Show("2");
 				Size quarterCellSize = new Size(cells[position].Width / 2, cells[position].Height / 2);				
 				chips[player].Dock = DockStyle.None;
 				chips[player].Size = quarterCellSize;
@@ -293,6 +294,7 @@ namespace MIC_Monopolia {
 				chips[game.SamePositionsOfCurrentPlayer[0]].Location = new Point(quarterCellSize.Width, 0);
 				chips[game.SamePositionsOfCurrentPlayer[1]].Location = new Point(0, quarterCellSize.Height);
 				if (game.SamePositionsOfCurrentPlayer.Count == 3) {
+					MessageBox.Show("3");
 					chips[game.SamePositionsOfCurrentPlayer[2]].Location = new Point(quarterCellSize);
 				}
 			}
