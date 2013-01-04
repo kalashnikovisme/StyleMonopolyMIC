@@ -15,7 +15,7 @@ namespace MIC_Monopolia {
 		private const int PERCENT_100 = 100;
 		private const int ERROR_INT = -1;
 		private const int LEFT_MOST_COLUMN = 0;
-		private const int CHIPS_COUNT = 10;
+		private const int DEFAULT_COUNT = 10;
 		private const int POINTS_COLUMN_INDEX = 2;
 		private const string IMAGE_CHIPS_PATH = "chips/";
 
@@ -27,9 +27,12 @@ namespace MIC_Monopolia {
 		private OpacityLabel[] pointsPlayersLabel;
 		private TableLayoutPanel cubesPanel;
 		private Dice[] dices;
+		
 		private TableLayoutPanel taskTableLayoutPanel;
-		private Chip[] staticCloneChipsTasks;
-
+		private Chip[] tasksStaticCloneChips;
+		private OpacityLabel[] tasksLabels;
+		private AppButton[] tasksPerformButtons;
+		
 		private Player[] players;
 		private Game game;
 		private bool isGame = false;
@@ -45,9 +48,11 @@ namespace MIC_Monopolia {
 			cells = new Cell[playCellsCount];
 			namePlayersDisTextBox = new ImprovedLabel[playersCount];
 			pointsPlayersLabel = new OpacityLabel[playersCount];
-			chips = new Chip[CHIPS_COUNT];
-			staticCloneChips = new Chip[CHIPS_COUNT];
-			staticCloneChipsTasks = new Chip[CHIPS_COUNT];
+			chips = new Chip[DEFAULT_COUNT];
+			staticCloneChips = new Chip[DEFAULT_COUNT];
+			tasksStaticCloneChips = new Chip[DEFAULT_COUNT];
+			tasksLabels = new OpacityLabel[playersCount];
+			tasksPerformButtons = new AppButton[playersCount];
 			cubesPanel = new TableLayoutPanel();
 			taskTableLayoutPanel = new TableLayoutPanel();
 			players = new Player[playersCount];
@@ -100,6 +105,26 @@ namespace MIC_Monopolia {
 			spaceTableLayoutPanel.Controls.Add(taskTableLayoutPanel, 1, 1);
 			spaceTableLayoutPanel.SetColumnSpan(taskTableLayoutPanel, calculateFieldSide() - 2);
 			spaceTableLayoutPanel.SetRowSpan(taskTableLayoutPanel, calculateFieldSide() - 2);
+			
+			taskTableLayoutPanel.ColumnCount = 3;
+			taskTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.AutoSize));
+			taskTableLayoutPanel.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 70));
+			taskTableLayoutPanel.ColumnStyles.Insert(2, new ColumnStyle(SizeType.AutoSize));			
+			taskTableLayoutPanel.RowCount = DEFAULT_COUNT;
+			for (int i = 0; i < tasksLabels.Length; i++) {
+				tasksLabels[i] = new OpacityLabel() {
+					Text = "Задание"
+				};
+				tasksPerformButtons[i] = new AppButton() {
+					Text = "+", 
+					Dock = DockStyle.Fill
+				};
+			}
+			for (int i = 0; i < tasksLabels.Length; i++) {
+				taskTableLayoutPanel.Controls.Add(tasksStaticCloneChips[i], 0, i);
+				taskTableLayoutPanel.Controls.Add(tasksLabels[i], 1, i);
+				taskTableLayoutPanel.Controls.Add(tasksPerformButtons[i], 2, i);
+			}
 		}
 
 		private void createDicesPanel() {
@@ -190,21 +215,21 @@ namespace MIC_Monopolia {
 		}
 
 		private void initilizeChips() {
-			for (int i = 0; i < CHIPS_COUNT; i++) {
+			for (int i = 0; i < DEFAULT_COUNT; i++) {
 				chips[i] = new Chip() {
 					Image = Image.FromFile(IMAGE_CHIPS_PATH + i.ToString() + ".png")
 				};
 				staticCloneChips[i] = new Chip() {
 					Image = Image.FromFile(IMAGE_CHIPS_PATH + i.ToString() + ".png")
 				};
-				staticCloneChipsTasks[i] = new Chip() {
+				tasksStaticCloneChips[i] = new Chip() {
 					Image = Image.FromFile(IMAGE_CHIPS_PATH + i.ToString() + ".png")
 				};
 			}
-			for (int i = players.Length; i < CHIPS_COUNT; i++) {
+			for (int i = players.Length; i < DEFAULT_COUNT; i++) {
 				chips[i].Visible = false;
 				staticCloneChips[i].Visible = false;
-				staticCloneChipsTasks[i].Visible = false;
+				tasksStaticCloneChips[i].Visible = false;
 			}
 			for (int i = 0; i < chips.Length; i++) {
 				statisticTableLayoutPanel.Controls.Add(staticCloneChips[i], 0, i);

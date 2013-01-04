@@ -306,5 +306,18 @@ namespace UsefulControls {
 				TextBox.Margin = value;
 			}
 		}
+		
+		/// <summary>
+		/// Added 04/01/2013
+		/// </summary>
+		public int TabIndex {
+			get {
+				return TextBox.TabIndex;
+			}
+			set {
+				TextBox.TabIndex = value;
+				Label.TabIndex = value;
+			}
+		}
 	}
 }
