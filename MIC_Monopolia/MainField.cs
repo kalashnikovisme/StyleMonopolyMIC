@@ -22,6 +22,7 @@ namespace MIC_Monopolia {
 
 		private Cell[] cells;
 		private Chip[] chips;
+		private Chip[] staticCloneChips;
 		private ImprovedLabel[] namePlayersDisTextBox;
 		private OpacityLabel[] pointsPlayersLabel;
 		private TableLayoutPanel cubesPanel;
@@ -43,6 +44,7 @@ namespace MIC_Monopolia {
 			namePlayersDisTextBox = new ImprovedLabel[playersCount];
 			pointsPlayersLabel = new OpacityLabel[playersCount];
 			chips = new Chip[CHIPS_COUNT];
+			staticCloneChips = new Chip[CHIPS_COUNT];
 			cubesPanel = new TableLayoutPanel();
 
 			players = new Player[playersCount];
@@ -65,7 +67,6 @@ namespace MIC_Monopolia {
 			for (int i = 0; i < spaceTableLayoutPanel.RowCount; i++) {
 				spaceTableLayoutPanel.RowStyles.Insert(i, new RowStyle(SizeType.Percent, PERCENT_100 / spaceTableLayoutPanel.RowCount));
 			}
-			spaceTableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
 
 			controlTableLayoutPanel.RowStyles.Insert(0, new RowStyle(SizeType.Percent, 70));
 			controlTableLayoutPanel.RowStyles.Insert(1, new RowStyle(SizeType.Absolute, 150));
@@ -175,6 +176,24 @@ namespace MIC_Monopolia {
 				players[i] = new Player(namePlayersDisTextBox[i].Text);
 			}
 		}
+
+		private void initilizeChips() {
+			for (int i = 0; i < CHIPS_COUNT; i++) {
+				chips[i] = new Chip() {
+					Image = Image.FromFile(IMAGE_CHIPS_PATH + i.ToString() + ".png")
+				};
+				staticCloneChips[i] = new Chip() {
+					Image = Image.FromFile(IMAGE_CHIPS_PATH + i.ToString() + ".png")
+				};
+			}
+			for (int i = players.Length; i < CHIPS_COUNT; i++) {
+				chips[i].Visible = false;
+				staticCloneChips[i].Visible = false;
+			}
+			for (int i = 0; i < chips.Length; i++) {
+				statisticTableLayoutPanel.Controls.Add(staticCloneChips[i], 0, i);
+			}
+		}
 		
 		private void rollDicesButton_Click(object sender, EventArgs e) {
 			Random r = new Random();
@@ -200,19 +219,6 @@ namespace MIC_Monopolia {
 		/// <summary>
 		/// Chips count is always 10. It need to save size of chip. All other chips are invisible.
 		/// </summary>
-		private void initilizeChips() {
-			for (int i = 0; i < CHIPS_COUNT; i++) {
-				chips[i] = new Chip() {
-					Image = Image.FromFile(IMAGE_CHIPS_PATH + i.ToString() + ".png")
-				};
-			}
-			for (int i = players.Length; i < CHIPS_COUNT; i++) {
-				chips[i].Visible = false;
-			}
-			for (int i = 0; i < chips.Length; i++) {
-				statisticTableLayoutPanel.Controls.Add(chips[i], 0, i);
-			}
-		}
 
 		private void MainField_Click(object sender, EventArgs e) {
 
