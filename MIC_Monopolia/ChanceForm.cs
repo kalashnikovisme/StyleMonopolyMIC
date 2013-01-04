@@ -14,7 +14,8 @@ namespace GameItems {
 		private const string CHANCE_TASK_FILE_PATH = "chance.txt";
 		private AppButton[] tasksButtons;
 		private const int PERCENT_100 = 100;
-		public int ChosenIndex = -1;
+		private const int ERROR = -1;
+		public int ChosenIndex = ERROR;
 
 		private Chip currentPlayerChip;
 
@@ -52,6 +53,13 @@ namespace GameItems {
 			}
 			mainTableLayoutPanel.Controls.Add(currentPlayerChip);
 			this.Show();
+			this.FormClosing += ChanceForm_FormClosing;
+		}
+
+		private void ChanceForm_FormClosing(object sender, FormClosingEventArgs e) {
+			if (ChosenIndex == ERROR) {
+				ChosenIndex = 0;
+			}
 		}
 
 		private void ChanceForm_Click(object sender, EventArgs e) {

@@ -36,16 +36,33 @@ namespace GameItems {
 			cellCount = gameCellCount;
 		}
 
+		private bool bankrupt(int playerIndex) {
+			return ((players[playerIndex].Money < 0) && 
+					(players[playerIndex].People <= 0) && 
+					(players[playerIndex].Famous < 0));
+		}
+
+		public delegate void BankruptEventHandler(int playerIndex);
+		public event BankruptEventHandler PlayerBankKrupt;
+
 		public void NextMove(int value) {
 			if (++currentPlayerIndex >= players.Length) {
 				currentPlayerIndex = 0;
 				AllPlayersHaveMoved = true;
 			}
+			if (players[currentPlayerIndex].Lose) {
+				while (players[currentPlayerIndex].Lose) {
+					currentPlayerIndex++;
+				}
+			}
+			if (bankrupt(currentPlayerIndex)) {
+				PlayerBankKrupt(currentPlayerIndex);
+				players[currentPlayerIndex].Lose = true;
+			}
 			players[currentPlayerIndex].Position += value;
 			if (players[currentPlayerIndex].Position >= cellCount) {
 				players[currentPlayerIndex].Position %= cellCount;
 			}
-
 		}
 
 		public void CheckCell(string taskCell) {

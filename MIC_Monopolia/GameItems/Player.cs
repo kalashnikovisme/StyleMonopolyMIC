@@ -37,5 +37,7 @@ namespace GameItems {
 		public Player(string playerName) {
 			this.Name = playerName;
 		}
+
+		public bool Lose = false;
 	}
 }

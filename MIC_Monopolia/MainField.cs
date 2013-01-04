@@ -22,7 +22,6 @@ namespace MIC_Monopolia {
 		private const int FAMOUS_COLUMN_INDEX = 4;
 		private const string IMAGE_CHIPS_PATH = "chips/";
 
-
 		private Cell[] cells;
 		private Chip[] chips;
 		private Chip[] staticCloneChips;
@@ -336,11 +335,24 @@ namespace MIC_Monopolia {
 			if (isGame == false) {
 				game = new Game(players, cells.Length);
 				game.ChanceFormClosed += game_ChanceFormClosed;
+				game.PlayerBankKrupt += game_playerBankKrupt;
 				isGame = true;
 			}
 			game.NextMove(sumPointsOfDices());
 			game.CheckCell(cells[game.PlayersPositions[game.CurrentPlayerIndex]].Task);
 			viewDatas();
+		}
+
+		private void game_playerBankKrupt(int bankruptPlayerIndex) {
+			chips[bankruptPlayerIndex].Visible = false;
+			namePlayersDisTextBox[bankruptPlayerIndex].Enabled = false;
+			moneyPlayersLabel[bankruptPlayerIndex].Enabled = false;
+			famousPlayersLabel[bankruptPlayerIndex].Enabled = false;
+			peoplePlayersLabel[bankruptPlayerIndex].Enabled = false;
+			positionLabels[bankruptPlayerIndex].Enabled = false;
+			staticCloneChips[bankruptPlayerIndex].Enabled = false;
+			tasksStaticCloneChips[bankruptPlayerIndex].Enabled = false;
+			tasksPerformButtons[bankruptPlayerIndex].Enabled = false;
 		}
 
 		private void game_ChanceFormClosed(object sender, EventArgs e) {
