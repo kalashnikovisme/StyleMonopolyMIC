@@ -243,10 +243,17 @@ namespace MIC_Monopolia {
 				return;
 			}
 			if (isGame == false) {
-				game = new Game(players);
+				game = new Game(players, cells.Length);
 				isGame = true;
 			}
 			game.NextMove(sumPointsOfDices());
+			loadDatas();
+		}
+		
+		private void loadDatas() {
+			for (int i = 0; i < game.PlayersPositions.Length; i++) {
+				pointsPlayersLabel[i].Text = game.PlayersPositions[i].ToString();
+			}
 		}
 		
 		#endregion
