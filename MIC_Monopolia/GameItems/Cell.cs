@@ -48,6 +48,7 @@ namespace GameItems {
 			
 			this.Dock = DockStyle.Fill;
 			this.BackColor = Color.White;
+			this.BackgroundImageLayout = ImageLayout.Zoom;
 		}
 	}
 }

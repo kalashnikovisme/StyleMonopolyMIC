@@ -153,6 +153,81 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zur0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Департамент по молодёжной политике.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\51245 - копия - копия.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sms_zapret.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\obnovlyat-sayt-260x260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nalogovaya.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2080-den goroda novoulianovska.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aam-2012-rabota-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x_9dd4aa0a.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Герб Ульяновской области.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tanec-fleshmob-542x407.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Эмблема МИЦ.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Рисунок1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14579049-black-and-white-contour-photo-camera-vector--illustration.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15039328-stack-of-money.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dices.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_square.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pravo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Рисунок1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\l_85584f6f.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barretr_Earth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x_3b02010e.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5454.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
