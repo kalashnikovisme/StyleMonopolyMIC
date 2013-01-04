@@ -80,15 +80,19 @@ namespace GameItems {
 			}
 		}
 
+		public event EventHandler NewFormIsOpen;
+
 		public void CheckCell(string taskCell) {
 			if (taskCell == CHANCE) {
 				ChanceForm chance = new ChanceForm(currentPlayerIndex, CHANCE);
 				chance.FormClosing += chance_FormClosing;
+				NewFormIsOpen(this, EventArgs.Empty);
 				return;
 			}
 			if (activities.Contains(taskCell)) {
 				ChanceForm chance = new ChanceForm(currentPlayerIndex, taskCell);
 				chance.Answer += chance_answer;
+				NewFormIsOpen(this, EventArgs.Empty);
 			}
 		}
 

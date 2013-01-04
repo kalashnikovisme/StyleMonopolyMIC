@@ -336,11 +336,16 @@ namespace MIC_Monopolia {
 				game = new Game(players, cells.Length);
 				game.ChanceFormClosed += game_ChanceFormClosed;
 				game.PlayerBankKrupt += game_playerBankKrupt;
+				game.NewFormIsOpen += game_NewFormIsOpen;
 				isGame = true;
 			}
 			game.NextMove(sumPointsOfDices());
 			game.CheckCell(cells[game.PlayersPositions[game.CurrentPlayerIndex]].Task);
 			viewDatas();
+		}
+
+		private void game_NewFormIsOpen(object sender, EventArgs e) {
+			this.Enabled = false;
 		}
 
 		private void game_playerBankKrupt(int bankruptPlayerIndex) {
@@ -356,6 +361,7 @@ namespace MIC_Monopolia {
 		}
 
 		private void game_ChanceFormClosed(object sender, EventArgs e) {
+			this.Enabled = true;
 			viewDatas();
 		}
 		
