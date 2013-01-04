@@ -25,15 +25,13 @@ namespace GameItems {
 		
 		private Label label;
 		
-		public Cell(int cellIndex) {
+		public Cell() {
 			label = new Label() {
 				Location = new Point(0, 0),
-				Size = new Size(15, 15),
+				Size = new Size(40, 40),
 				BackColor = Color.FromArgb(0)
 			};
-			//this.Controls.Add(label);
-			
-			Index = cellIndex;
+			this.Controls.Add(label);
 			
 			this.Dock = DockStyle.Fill;
 			this.BackColor = Color.White;

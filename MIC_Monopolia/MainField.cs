@@ -117,16 +117,6 @@ namespace MIC_Monopolia {
 			cubesPanel.AutoSize = true;
 		}
 
-		private void rollDicesButton_Click(object sender, EventArgs e) {
-			Random r = new Random();
-			for (int i = 0; i < 2; i++) {
-				int rand = r.Next(1, 6);
-				dices[i].BackgroundImage = Image.FromFile(@"" + rand.ToString() + ".jpg");
-				dices[i].Number = rand;
-			}
-			play();
-		}
-
 		private void initializePointPlayersLabel() {
 			for (int i = 0; i < pointsPlayersLabel.Length; i++) {
 				pointsPlayersLabel[i] = new OpacityLabel() {
@@ -139,10 +129,6 @@ namespace MIC_Monopolia {
 			for (int i = 0; i < pointsPlayersLabel.Length; i++) {
 				statisticTableLayoutPanel.Controls.Add(pointsPlayersLabel[i], POINTS_COLUMN_INDEX, i);
 			}
-		}
-
-		private int percents(int value, int per) {
-			return (value * per) / PERCENT_100;
 		}
 
 		private void initializeNamePlayersDisTextBox() {
@@ -160,32 +146,27 @@ namespace MIC_Monopolia {
 			}
 		}
 
-		private int calculateFieldSide() {
-			if ((cells.Length % SQUARE_SIDES_COUNT) != 0) {
-				return ERROR_INT;
-			}
-			return cells.Length / SQUARE_SIDES_COUNT;
-		}
-
 		/// <summary>
 		/// Input 4 queues of cells
 		/// </summary>
 		private void initilizeCells() {
 			for (int i = 0; i < cells.Length; i++) {
-				cells[i] = new Cell(i);
+				cells[i] = new Cell() {
+					Index = i
+				};
 				cells[i].Click += new EventHandler(MainField_Click);
 			}
 			for (int i = 0; i < calculateFieldSide(); i++) {
 				spaceTableLayoutPanel.Controls.Add(cells[i], i, 0);
 			}
 			for (int i = 1; i < calculateFieldSide(); i++) {
-				spaceTableLayoutPanel.Controls.Add(cells[calculateFieldSide() + i], calculateFieldSide(), i);
+				spaceTableLayoutPanel.Controls.Add(cells[calculateFieldSide() + i - 1], calculateFieldSide(), i);
 			}
 			for (int i = 2; i < calculateFieldSide() + 1; i++) {
-				spaceTableLayoutPanel.Controls.Add(cells[(calculateFieldSide() * 2) + i], calculateFieldSide() - i, calculateFieldSide() - 1);
+				spaceTableLayoutPanel.Controls.Add(cells[(calculateFieldSide() * 2) + i - 3], calculateFieldSide() - i, calculateFieldSide() - 1);
 			}
 			for (int i = 2; i < calculateFieldSide(); i++) {
-				spaceTableLayoutPanel.Controls.Add(cells[(calculateFieldSide() * 3) + i], 0, calculateFieldSide() - i);
+				spaceTableLayoutPanel.Controls.Add(cells[(calculateFieldSide() * 3) + i - 4], 0, calculateFieldSide() - i);
 			}
 		}
 
@@ -194,7 +175,28 @@ namespace MIC_Monopolia {
 				players[i] = new Player(namePlayersDisTextBox[i].Text);
 			}
 		}
+		
+		private void rollDicesButton_Click(object sender, EventArgs e) {
+			Random r = new Random();
+			for (int i = 0; i < 2; i++) {
+				int rand = r.Next(1, 6);
+				dices[i].BackgroundImage = Image.FromFile(@"" + rand.ToString() + ".jpg");
+				dices[i].Number = rand;
+			}
+			play();
+		}
+		
+		private int percents(int value, int per) {
+			return (value * per) / PERCENT_100;
+		}
 
+		private int calculateFieldSide() {
+			if ((cells.Length % SQUARE_SIDES_COUNT) != 0) {
+				return ERROR_INT;
+			}
+			return (cells.Length / SQUARE_SIDES_COUNT) + 1;
+		}
+		
 		/// <summary>
 		/// Chips count is always 10. It need to save size of chip. All other chips are invisible.
 		/// </summary>
@@ -281,9 +283,9 @@ namespace MIC_Monopolia {
 				chips[game.SamePositionsOfCurrentPlayer[0]].Dock = DockStyle.Right;
 				return;
 			}
+			const int fault = 10;
 			if ((game.SamePositionsOfCurrentPlayer.Count == 2) || (game.SamePositionsOfCurrentPlayer.Count == 3)) {
-				MessageBox.Show("2");
-				Size quarterCellSize = new Size(cells[position].Width / 2, cells[position].Height / 2);				
+				Size quarterCellSize = new Size((cells[position].Width / 2) - fault, (cells[position].Height / 2) - fault);				
 				chips[player].Dock = DockStyle.None;
 				chips[player].Size = quarterCellSize;
 				foreach (int i in game.SamePositionsOfCurrentPlayer) {
@@ -294,10 +296,48 @@ namespace MIC_Monopolia {
 				chips[game.SamePositionsOfCurrentPlayer[0]].Location = new Point(quarterCellSize.Width, 0);
 				chips[game.SamePositionsOfCurrentPlayer[1]].Location = new Point(0, quarterCellSize.Height);
 				if (game.SamePositionsOfCurrentPlayer.Count == 3) {
-					MessageBox.Show("3");
 					chips[game.SamePositionsOfCurrentPlayer[2]].Location = new Point(quarterCellSize);
 				}
 			}
+
+			//if ((game.AllPlayersHaveMoved) && 
+			//    ((game.SamePositionsOfCurrentPlayer.Count >= 4) || (game.SamePositionsOfCurrentPlayer.Count <= 9))) {
+			//    Size titheCellSize = new Size(cells[position].Width / 2, cells[position].Height / 5);
+			//    chips[player].Dock = DockStyle.None;
+			//    chips[player].Size = titheCellSize;
+			//    foreach (int i in game.SamePositionsOfCurrentPlayer) {
+			//        chips[i].Dock = DockStyle.None;
+			//        chips[i].Size = titheCellSize;
+			//    }
+			//    chips[player].Location = new Point(0, 0);
+			//    chips[game.SamePositionsOfCurrentPlayer[0]].Location = new Point(titheCellSize.Width, 0);
+			//    chips[game.SamePositionsOfCurrentPlayer[1]].Location = new Point(0, titheCellSize.Height);
+			//    chips[game.SamePositionsOfCurrentPlayer[2]].Location = new Point(titheCellSize);
+			//    chips[game.SamePositionsOfCurrentPlayer[3]].Location = new Point(0, titheCellSize.Height * 2);
+			//    if (game.SamePositionsOfCurrentPlayer.Count > 4) {
+			//        chips[game.SamePositionsOfCurrentPlayer[4]].Location = new Point(titheCellSize.Width, titheCellSize.Height * 2);
+			//    }
+			//    if (game.SamePositionsOfCurrentPlayer.Count > 5) {
+			//        chips[game.SamePositionsOfCurrentPlayer[5]].Location = new Point(0, titheCellSize.Height * 3);
+			//    }
+			//    if (game.SamePositionsOfCurrentPlayer.Count > 6) {
+			//        chips[game.SamePositionsOfCurrentPlayer[6]].Location = new Point(titheCellSize.Width, titheCellSize.Height * 3);
+			//    }
+			//    if (game.SamePositionsOfCurrentPlayer.Count > 7) {
+			//        chips[game.SamePositionsOfCurrentPlayer[7]].Location = new Point(0, titheCellSize.Height * 4);
+			//    }
+			//    if (game.SamePositionsOfCurrentPlayer.Count > 8) {
+			//        chips[game.SamePositionsOfCurrentPlayer[8]].Location = new Point(titheCellSize.Width, titheCellSize.Height * 4);
+			//    }
+			//    if (game.SamePositionsOfCurrentPlayer.Count > 9) {
+			//        chips[game.SamePositionsOfCurrentPlayer[9]].Location = new Point(0, titheCellSize.Height * 5);
+			//    }
+			//    chips[game.SamePositionsOfCurrentPlayer[3]].Location = new Point(0, titheCellSize.Height * 2);
+				
+			//    if (game.SamePositionsOfCurrentPlayer.Count == 3) {
+			//        chips[game.SamePositionsOfCurrentPlayer[2]].Location = new Point(titheCellSize);
+			//    }
+			//}
 		}
 		
 		#endregion

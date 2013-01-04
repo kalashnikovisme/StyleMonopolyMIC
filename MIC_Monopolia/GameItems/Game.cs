@@ -18,6 +18,8 @@ namespace GameItems {
 			}
 		}
 		
+		public bool AllPlayersHaveMoved = false;
+		
 		private int cellCount = 0;
 		
 		public Game(Player[] gamePlayers, int gameCellCount) {
@@ -32,6 +34,7 @@ namespace GameItems {
 		public void NextMove(int value) {
 			if (++currentPlayerIndex >= players.Length) {
 				currentPlayerIndex = 0;
+				AllPlayersHaveMoved = true;
 			}
 			players[currentPlayerIndex].Position += value;
 			if (players[currentPlayerIndex].Position >= cellCount) {

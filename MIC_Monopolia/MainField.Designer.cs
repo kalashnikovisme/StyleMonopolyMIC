@@ -97,6 +97,7 @@
 			this.statisticTableLayoutPanel.ColumnCount = 3;
 			this.statisticTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.statisticTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.statisticTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.statisticTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.statisticTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
 			this.statisticTableLayoutPanel.Name = "statisticTableLayoutPanel";
