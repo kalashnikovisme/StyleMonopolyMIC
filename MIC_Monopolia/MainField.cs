@@ -95,9 +95,9 @@ namespace MIC_Monopolia {
 			statisticTableLayoutPanel.ColumnCount = FAMOUS_COLUMN_INDEX + 1;
 			statisticTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Absolute, percents(statisticTableLayoutPanel.Height, chipSidePercent)));
 			statisticTableLayoutPanel.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 80));
-			statisticTableLayoutPanel.ColumnStyles.Insert(MONEY_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 10));
-			statisticTableLayoutPanel.ColumnStyles.Insert(PEOPLE_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 10));
-			statisticTableLayoutPanel.ColumnStyles.Insert(FAMOUS_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 10));
+			statisticTableLayoutPanel.ColumnStyles.Insert(MONEY_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 20));
+			statisticTableLayoutPanel.ColumnStyles.Insert(PEOPLE_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 20));
+			statisticTableLayoutPanel.ColumnStyles.Insert(FAMOUS_COLUMN_INDEX, new ColumnStyle(SizeType.Percent, 20));
 			controlTableLayoutPanel.Controls.Add(cubesPanel, 0, 1);
 
 			createDicesPanel();
@@ -149,12 +149,6 @@ namespace MIC_Monopolia {
 				taskTableLayoutPanel.Controls.Add(positionLabels[i], 2, i);
 				taskTableLayoutPanel.Controls.Add(tasksPerformButtons[i], 3, i);
 			}
-		}
-
-		private void tasksPerformButton_Click(object sender, EventArgs e) {
-			int playerIndex = ((PerformButton)sender).PlayerIndex;
-			game.SetPointsToPlayer(playerIndex, game.PlayersPositions[playerIndex]);
-			viewDatas();
 		}
 
 		private void createDicesPanel() {
@@ -259,6 +253,9 @@ namespace MIC_Monopolia {
 			}
 		}
 
+		/// <summary>
+		/// Chips count is always 10. It need to save size of chip. All other chips are invisible.
+		/// </summary>
 		private void initilizeChips() {
 			for (int i = 0; i < DEFAULT_COUNT; i++) {
 				chips[i] = new Chip() {
@@ -301,10 +298,6 @@ namespace MIC_Monopolia {
 			}
 			return (cells.Length / SQUARE_SIDES_COUNT) + 1;
 		}
-		
-		/// <summary>
-		/// Chips count is always 10. It need to save size of chip. All other chips are invisible.
-		/// </summary>
 
 		private void MainField_Click(object sender, EventArgs e) {
 
@@ -356,9 +349,17 @@ namespace MIC_Monopolia {
 			cells[currentPosition].Controls.Add(chips[currentPlayerIndex]);
 			tasksLabels[currentPlayerIndex].Text = cells[currentPosition].Task;
 			positionLabels[currentPlayerIndex].Text = currentPosition.ToString();
-			moneyPlayersLabel[currentPlayerIndex].Text = game.Money[currentPlayerIndex].ToString();
-			peoplePlayersLabel[currentPlayerIndex].Text = game.People[currentPlayerIndex].ToString();
-			famousPlayersLabel[currentPlayerIndex].Text = game.Famous[currentPlayerIndex].ToString();
+			for (int i = 0; i < players.Length; i++) {
+				moneyPlayersLabel[i].Text = game.Money[i].ToString();
+				peoplePlayersLabel[i].Text = game.People[i].ToString();
+				famousPlayersLabel[i].Text = game.Famous[i].ToString();	
+			}
+		}
+
+		private void tasksPerformButton_Click(object sender, EventArgs e) {
+			int playerIndex = ((PerformButton)sender).PlayerIndex;
+			game.SetPointsToPlayer(playerIndex, game.PlayersPositions[playerIndex]);
+			viewDatas();
 		}
 		
 		private void adjustSizeOfChips(int player, int position) {
