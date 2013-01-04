@@ -7,6 +7,10 @@ namespace GameItems {
 	public class Game {
 		private Player[] players;
 		
+		private const int MONEY = 0;
+		private const int PEOPLE = 1;
+		private const int FAMOUS = 2;
+		
 		private const int GAME_IS_NOT_BEGIN = -1;
 		private int currentPlayerIndex = GAME_IS_NOT_BEGIN;
 		public int CurrentPlayerIndex {
@@ -76,5 +80,15 @@ namespace GameItems {
 		public List<int> GetSamePositionsOfPlayer(int playerIndex) {
 			return getSamePositionsOfPlayer(playerIndex);
 		} 
+		
+		public void SetPointsToPlayer(int playerIndex, int cellIndex) {
+			int[] points = Rules.Points(cellIndex);
+			if (points.Length == 0) {
+				return;
+			}
+			players[playerIndex].Money += points[MONEY];
+			players[playerIndex].People += points[PEOPLE];
+			players[playerIndex].Famous += points[FAMOUS];
+		}
 	}
 }

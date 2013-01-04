@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\PerformButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GameItems\Chip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,6 +67,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GameItems\Game.cs" />
+    <Compile Include="GameItems\Rules.cs" />
     <Compile Include="MainField.cs">
       <SubType>Form</SubType>
     </Compile>

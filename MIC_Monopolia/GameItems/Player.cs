@@ -6,15 +6,18 @@ using UsefulClasses;
 
 namespace GameItems {
 	public class Player : RealObject {
-		private int points = 0;
-		public int Points {
+		private int money = 0;
+		public int Money {
 			get {
-				return points;
+				return money;
 			}
 			set {
-				points = value;
+				money = value;
 			}
 		}
+		
+		public int Famous = 0;
+		public int People = 0;
 		
 		private const int NOT_IN_FIELD = -1;
 		

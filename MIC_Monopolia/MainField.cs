@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using GameItems;
 using UsefulControls;
+using Controls;
 
 namespace MIC_Monopolia {
 	public partial class MainField : Form {
@@ -31,7 +32,8 @@ namespace MIC_Monopolia {
 		private TableLayoutPanel taskTableLayoutPanel;
 		private Chip[] tasksStaticCloneChips;
 		private OpacityLabel[] tasksLabels;
-		private AppButton[] tasksPerformButtons;
+		private OpacityLabel[] positionLabels;
+		private PerformButton[] tasksPerformButtons;
 		
 		private Player[] players;
 		private Game game;
@@ -52,7 +54,8 @@ namespace MIC_Monopolia {
 			staticCloneChips = new Chip[DEFAULT_COUNT];
 			tasksStaticCloneChips = new Chip[DEFAULT_COUNT];
 			tasksLabels = new OpacityLabel[playersCount];
-			tasksPerformButtons = new AppButton[playersCount];
+			positionLabels = new OpacityLabel[playersCount];
+			tasksPerformButtons = new PerformButton[playersCount];
 			cubesPanel = new TableLayoutPanel();
 			taskTableLayoutPanel = new TableLayoutPanel();
 			players = new Player[playersCount];
@@ -106,25 +109,43 @@ namespace MIC_Monopolia {
 			spaceTableLayoutPanel.SetColumnSpan(taskTableLayoutPanel, calculateFieldSide() - 2);
 			spaceTableLayoutPanel.SetRowSpan(taskTableLayoutPanel, calculateFieldSide() - 2);
 			
-			taskTableLayoutPanel.ColumnCount = 3;
+			taskTableLayoutPanel.ColumnCount = 4;
 			taskTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.AutoSize));
 			taskTableLayoutPanel.ColumnStyles.Insert(1, new ColumnStyle(SizeType.Percent, 70));
-			taskTableLayoutPanel.ColumnStyles.Insert(2, new ColumnStyle(SizeType.AutoSize));			
-			taskTableLayoutPanel.RowCount = DEFAULT_COUNT;
+			taskTableLayoutPanel.ColumnStyles.Insert(2, new ColumnStyle(SizeType.AutoSize));
+			taskTableLayoutPanel.ColumnStyles.Insert(3, new ColumnStyle(SizeType.AutoSize));
+			int chipSidePercent = PERCENT_100 / statisticTableLayoutPanel.RowCount;
+			taskTableLayoutPanel.RowCount = chips.Length;
+			for (int i = 0; i < taskTableLayoutPanel.RowCount; i++) {
+				taskTableLayoutPanel.RowStyles.Insert(i, new RowStyle(SizeType.Percent, chipSidePercent));
+			}
 			for (int i = 0; i < tasksLabels.Length; i++) {
 				tasksLabels[i] = new OpacityLabel() {
-					Text = "Задание"
-				};
-				tasksPerformButtons[i] = new AppButton() {
-					Text = "+", 
+					Text = "Задание",
 					Dock = DockStyle.Fill
+				};
+				tasksPerformButtons[i] = new PerformButton() {
+					Text = "+", 
+					Dock = DockStyle.Fill,
+					PlayerIndex = i
+				};
+				tasksPerformButtons[i].Click += new EventHandler(tasksPerformButton_Click);
+				positionLabels[i] = new OpacityLabel() {
+					Text = "0",
+					Dock = DockStyle.Fill	
 				};
 			}
 			for (int i = 0; i < tasksLabels.Length; i++) {
 				taskTableLayoutPanel.Controls.Add(tasksStaticCloneChips[i], 0, i);
 				taskTableLayoutPanel.Controls.Add(tasksLabels[i], 1, i);
-				taskTableLayoutPanel.Controls.Add(tasksPerformButtons[i], 2, i);
+				taskTableLayoutPanel.Controls.Add(positionLabels[i], 2, i);
+				taskTableLayoutPanel.Controls.Add(tasksPerformButtons[i], 3, i);
 			}
+		}
+
+		private void tasksPerformButton_Click(object sender, EventArgs e) {
+			int playerIndex = ((PerformButton)sender).PlayerIndex;
+			game.SetPointsToPlayer(playerIndex, game.PlayersPositions[playerIndex]);
 		}
 
 		private void createDicesPanel() {
@@ -190,7 +211,8 @@ namespace MIC_Monopolia {
 		private void initilizeCells() {
 			for (int i = 0; i < cells.Length; i++) {
 				cells[i] = new Cell() {
-					Index = i
+					Index = i,
+					Task = Rules.AllRules[i]
 				};
 				cells[i].Click += new EventHandler(MainField_Click);
 			}
@@ -309,6 +331,8 @@ namespace MIC_Monopolia {
 			int currentPosition = game.PlayersPositions[currentPlayerIndex];
 			adjustSizeOfChips(currentPlayerIndex, currentPosition);
 			cells[currentPosition].Controls.Add(chips[currentPlayerIndex]);
+			tasksLabels[currentPlayerIndex].Text = cells[currentPosition].Task;
+			positionLabels[currentPlayerIndex].Text = currentPosition.ToString();
 		}
 		
 		private void adjustSizeOfChips(int player, int position) {
