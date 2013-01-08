@@ -136,7 +136,7 @@ namespace MIC_Monopolia {
 			spaceTableLayoutPanel.Controls.Add(taskTableLayoutPanel, 1, 1);
 			spaceTableLayoutPanel.SetColumnSpan(taskTableLayoutPanel, calculateFieldSide() - 2);
 			spaceTableLayoutPanel.SetRowSpan(taskTableLayoutPanel, calculateFieldSide() - 2);
-			spaceTableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
+			//spaceTableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
 
 			taskTableLayoutPanel.ColumnCount = 4;
 			taskTableLayoutPanel.BackgroundImage = global::MIC_Monopolia.Properties.Resources.wall;

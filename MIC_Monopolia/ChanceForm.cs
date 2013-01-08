@@ -99,7 +99,7 @@ namespace GameItems {
 			for (int i = 0; i < tasksButtons.Length; i++) {
 				tasksButtons[i] = new AppButton() {
 					Font = new Font("PF Beausans Pro Light", 12F),
-					Text = (i + 1).ToString(),
+					Text = type + " " + (i + 1).ToString(),
 					Size = new Size(50, 50),
 					Dock = DockStyle.Fill,
 					Index = i
