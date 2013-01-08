@@ -23,10 +23,10 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			this.fieldTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-			this.spaceTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-			this.controlTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-			this.statisticTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+			this.fieldTableLayoutPanel = new UsefulControls.OpacityTableLayoutPanel();
+			this.spaceTableLayoutPanel = new UsefulControls.OpacityTableLayoutPanel();
+			this.controlTableLayoutPanel = new UsefulControls.OpacityTableLayoutPanel();
+			this.statisticTableLayoutPanel = new UsefulControls.OpacityTableLayoutPanel();
 			this.fieldTableLayoutPanel.SuspendLayout();
 			this.controlTableLayoutPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -124,10 +124,10 @@
 
 		#endregion
 
-		private System.Windows.Forms.TableLayoutPanel fieldTableLayoutPanel;
-		private System.Windows.Forms.TableLayoutPanel spaceTableLayoutPanel;
-		private System.Windows.Forms.TableLayoutPanel controlTableLayoutPanel;
-		private System.Windows.Forms.TableLayoutPanel statisticTableLayoutPanel;
+		private UsefulControls.OpacityTableLayoutPanel fieldTableLayoutPanel;
+		private UsefulControls.OpacityTableLayoutPanel spaceTableLayoutPanel;
+		private UsefulControls.OpacityTableLayoutPanel controlTableLayoutPanel;
+		private UsefulControls.OpacityTableLayoutPanel statisticTableLayoutPanel;
 	}
 }
 

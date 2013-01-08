@@ -13,13 +13,6 @@ namespace UsefulForms {
 			InitializeComponent();
 			this.FormBorderStyle = FormBorderStyle.None;
 			this.WindowState = FormWindowState.Maximized;
-			this.KeyDown += new KeyEventHandler(MetroForm_KeyDown);
-		}
-
-		protected void MetroForm_KeyDown(object sender, KeyEventArgs e) {
-			if (e.KeyCode == Keys.Escape) {
-				this.Close();
-			}
 		}
 	}
 }

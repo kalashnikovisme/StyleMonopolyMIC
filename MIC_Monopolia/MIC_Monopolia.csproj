@@ -74,6 +74,9 @@
     <Compile Include="ChanceForm.Designer.cs">
       <DependentUpon>ChanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OpacityTableLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\PerformButton.cs">
       <SubType>Component</SubType>
     </Compile>

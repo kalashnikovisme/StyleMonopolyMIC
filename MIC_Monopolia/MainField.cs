@@ -29,10 +29,10 @@ namespace MIC_Monopolia {
 		private OpacityLabel[] moneyPlayersLabel;
 		private OpacityLabel[] peoplePlayersLabel;
 		private OpacityLabel[] famousPlayersLabel;
-		private TableLayoutPanel cubesPanel;
+		private OpacityTableLayoutPanel cubesPanel;
 		private Dice[] dices;
 		
-		private TableLayoutPanel taskTableLayoutPanel;
+		private OpacityTableLayoutPanel taskTableLayoutPanel;
 		private Chip[] tasksStaticCloneChips;
 		private OpacityLabel[] tasksLabels;
 		private OpacityLabel[] positionLabels;
@@ -61,8 +61,8 @@ namespace MIC_Monopolia {
 			tasksLabels = new OpacityLabel[playersCount];
 			positionLabels = new OpacityLabel[playersCount];
 			tasksPerformButtons = new PerformButton[playersCount];
-			cubesPanel = new TableLayoutPanel();
-			taskTableLayoutPanel = new TableLayoutPanel();
+			cubesPanel = new OpacityTableLayoutPanel();
+			taskTableLayoutPanel = new OpacityTableLayoutPanel();
 			players = new Player[playersCount];
 
 			InitializeComponent();
@@ -71,7 +71,26 @@ namespace MIC_Monopolia {
 			createField();
 
 			putImageInCells();
+
+			this.Paint += MainField_Paint;
 		}
+
+		private void MainField_Paint(object sender, PaintEventArgs e) {
+			//Graphics g = e.Graphics;
+			//DrawRectangle(g, 0, 0, this.Width, this.Height);
+			this.BackColor = Color.FromArgb(249, 189, 39);
+		}
+
+		//private void DrawRectangle(Graphics g, int x, int y, int widht, int height) {
+		//	Rectangle rec = new Rectangle(x, y, widht, height);
+		//	if ((widht != 0) && (height != 0)) {
+		//		System.Drawing.Drawing2D.LinearGradientBrush gradient = new System.Drawing.Drawing2D.LinearGradientBrush(rec, Color.FromArgb(249, 189, 39), Color.White, System.Drawing.Drawing2D.LinearGradientMode.Vertical);
+		//		g.FillRectangle(gradient, rec);
+		//		return;
+		//	}
+		//	Brush brush = new SolidBrush(Color.FromArgb(251, 188, 59));
+		//	g.FillRectangle(brush, rec);
+		//}
 
 		private void createField() {
 			fieldTableLayoutPanel.ColumnStyles.Insert(0, new ColumnStyle(SizeType.Percent, 60));
@@ -111,7 +130,7 @@ namespace MIC_Monopolia {
 		}
 
 		private void initializeTaskField() {
-			taskTableLayoutPanel = new TableLayoutPanel() {
+			taskTableLayoutPanel = new OpacityTableLayoutPanel() {
 				Dock = DockStyle.Fill
 			};
 			spaceTableLayoutPanel.Controls.Add(taskTableLayoutPanel, 1, 1);
@@ -338,7 +357,7 @@ namespace MIC_Monopolia {
 			if (beginPlayCondition() == false) {
 				return;
 			}
-			if (isGame == false) {
+			if (isGame == false) {  
 				game = new Game(players, cells.Length);
 				game.ChanceFormClosed += game_ChanceFormClosed;
 				game.PlayerBankKrupt += game_playerBankKrupt;
